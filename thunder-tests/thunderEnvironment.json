@@ -1,0 +1,28 @@
+[
+  {
+    "_id": "9f16d280-38df-4b42-abe2-09de691760b4",
+    "name": "esflix",
+    "default": true,
+    "sortNum": 10000,
+    "created": "2023-01-18T22:35:09.568Z",
+    "modified": "2023-01-18T22:35:09.568Z",
+    "data": [
+      {
+        "name": "URL",
+        "value": "https://api.themoviedb.org/3"
+      },
+      {
+        "name": "MOVIE",
+        "value": "{{URL}}/movie"
+      },
+      {
+        "name": "TOKEN_TMDB",
+        "value": "api_key=46acccd3d3113568a1606057699b5c46"
+      },
+      {
+        "name": "LANG",
+        "value": "language=fr-FR"
+      }
+    ]
+  }
+]

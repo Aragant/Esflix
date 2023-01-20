@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "e4a8483f-ffb9-4c44-b2a1-2a374800eb5b",
+    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "containerId": "9c0ca9d6-e01a-41f1-a15b-645d8053240f",
+    "name": "popular",
+    "url": "{{MOVIE}}/popular?{{TOKEN_TMDB}}&{{LANG}}&page=1",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-01-18T22:38:16.614Z",
+    "modified": "2023-01-18T22:41:44.402Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "{{TOKEN_TMDB}}",
+        "value": "",
+        "isPath": false
+      },
+      {
+        "name": "{{LANG}}",
+        "value": "",
+        "isPath": false
+      },
+      {
+        "name": "page",
+        "value": "1",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  }
+]

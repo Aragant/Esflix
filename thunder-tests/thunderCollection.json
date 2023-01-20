@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "colName": "esflix",
+    "created": "2023-01-18T22:38:02.190Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "9c0ca9d6-e01a-41f1-a15b-645d8053240f",
+        "name": "movie",
+        "containerId": "",
+        "created": "2023-01-18T22:38:09.200Z",
+        "sortNum": 10000
+      }
+    ]
+  }
+]
