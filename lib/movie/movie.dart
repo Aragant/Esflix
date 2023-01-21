@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Movie {
   final String title;
   final String posterUrl;
@@ -24,5 +26,11 @@ class Movie {
       releaseDate: json['release_date'],
       rating: json['vote_average'].toDouble(),
     );
+  }
+
+  static List<Movie> parseList(String responseBody) {
+    final parsed = jsonDecode(responseBody)['results'].cast<Map<String, dynamic>>();
+
+    return parsed.map<Movie>((json) => Movie.fromJson(json)).toList();
   }
 }
