@@ -1,5 +1,5 @@
 import 'package:esflix/home_view.dart';
-import 'package:esflix/features/movie/presentation/movie_popular_presentation.dart';
+import 'package:esflix/features/movie/presentation/movie_popular_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 

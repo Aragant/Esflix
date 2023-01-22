@@ -2,7 +2,7 @@ import 'package:esflix/common_widgets/content_media_list.dart';
 import 'package:flutter/material.dart';
 
 import '../domain/movie.dart';
-import '../application/movie_TMDB_web_service.dart';
+import '../application/movie_tmdb_web_service.dart';
 
 class MoviePopularView extends StatefulWidget {
   const MoviePopularView({super.key});
@@ -28,7 +28,7 @@ class _MoviePopularViewState extends State<MoviePopularView> {
       _isLoading = true;
     });
     try {
-      final movies = await MovieTMDBWebService.retrievePopular();
+      final movies = await MovieTmdbWebService.retrievePopular();
       setState(() {
         _movies = movies;
         _moviesPosterUrl = movies

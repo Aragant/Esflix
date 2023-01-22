@@ -3,7 +3,7 @@
     "_id": "e4a8483f-ffb9-4c44-b2a1-2a374800eb5b",
     "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
     "containerId": "9c0ca9d6-e01a-41f1-a15b-645d8053240f",
-    "name": "popular",
+    "name": "Popular",
     "url": "{{MOVIE}}/popular?{{TOKEN_TMDB}}&{{LANG}}&page=1",
     "method": "GET",
     "sortNum": 10000,
@@ -48,5 +48,52 @@
       }
     ],
     "tests": []
+  },
+  {
+    "_id": "b35c1447-ae60-4437-b14f-d345b1bc499d",
+    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "containerId": "61b15d87-650a-459e-90c0-a6a2804ce0f6",
+    "name": "Session With Login",
+    "url": "{{AUTH}}/token/validate_with_login?{{TOKEN_TMDB}}&username=Aragant&password=CCDDRtomtom77&request_token=a1ae2e11db0158f64ebb45e30e5a5b50ad3395e2",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-01-22T16:00:34.259Z",
+    "modified": "2023-01-22T16:02:24.137Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "{{TOKEN_TMDB}}",
+        "value": "",
+        "isPath": false
+      },
+      {
+        "name": "username",
+        "value": "Aragant",
+        "isPath": false
+      },
+      {
+        "name": "password",
+        "value": "CCDDRtomtom77",
+        "isPath": false
+      },
+      {
+        "name": "request_token",
+        "value": "a1ae2e11db0158f64ebb45e30e5a5b50ad3395e2",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "94b70b74-3926-452e-855a-92b85d1d8c85",
+    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "containerId": "",
+    "name": "Account",
+    "url": "",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2023-01-22T16:05:25.894Z",
+    "modified": "2023-01-22T16:05:25.894Z",
+    "headers": []
   }
 ]

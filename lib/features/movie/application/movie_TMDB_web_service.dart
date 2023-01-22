@@ -1,12 +1,12 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import '../../../assets/tmdb_constants.dart' as tmdb;
 
 import '../domain/movie.dart';
 
-class MovieTMDBWebService {
-  static final _apiKey = dotenv.env['TMDB_API_KEY']!;
-  static final _baseUrl = '${dotenv.env['TMDB_BASE_URL']!}/movie';
-  static final _language = dotenv.env['LANG']!;
+class MovieTmdbWebService {
+  static final _apiKey = tmdb.API_KEY;
+  static final _baseUrl = '${tmdb.BASE_URL}/movie';
+  static final _language = tmdb.LANGUAGE;
 
   static Future<List<Movie>> retrievePopular() async {
     final response = await http.get(Uri.parse(

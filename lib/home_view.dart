@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'features/movie/presentation/movie_popular_presentation.dart';
+import 'features/movie/presentation/movie_popular_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
