@@ -1,3 +1,4 @@
+import 'package:esflix/home_view.dart';
 import 'package:esflix/movie/movie_popular_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -17,33 +18,66 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: const ColorScheme.light(
+          primary: Colors.red,
+          secondary: Colors.blue,
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+  static const List<Widget> _mainViews = <Widget>[
+    HomeView(),
+    MoviePopularView(),
+    Text('Search'),
+    Text('Account'),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    return const Scaffold(
-      body: SafeArea(
-        child: SizedBox(
-          height: 200,
-          child: MoviePopularView(),
+    return Scaffold(
+      body: _mainViews[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        BottomNavigationBarItem(
+          icon: Icon(Icons.movie),
+          label: 'Movies',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.search),
+          label: 'Search',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.account_circle),
+          label: 'Account',
+        ),
+      ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        fixedColor: Theme.of(context).colorScheme.secondary,
+        unselectedItemColor: Theme.of(context).colorScheme.primary,
+      ),
     );
   }
 }

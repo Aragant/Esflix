@@ -22,6 +22,10 @@
       {
         "name": "LANG",
         "value": "language=fr-FR"
+      },
+      {
+        "name": "AUTH",
+        "value": "{{URL}}/authentication"
       }
     ]
   }

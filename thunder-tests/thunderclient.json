@@ -28,5 +28,25 @@
       }
     ],
     "tests": []
+  },
+  {
+    "_id": "b9be4a08-3b98-4d55-8a68-83f525b2b392",
+    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "containerId": "61b15d87-650a-459e-90c0-a6a2804ce0f6",
+    "name": "Request Token",
+    "url": "{{AUTH}}/token/new?{{TOKEN_TMDB}}",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-01-22T06:42:06.617Z",
+    "modified": "2023-01-22T06:44:03.329Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "{{TOKEN_TMDB}}",
+        "value": "",
+        "isPath": false
+      }
+    ],
+    "tests": []
   }
 ]
