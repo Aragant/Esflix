@@ -1,9 +1,10 @@
-import 'package:esflix/carousel.dart';
+import 'package:esflix/movie/movie_popular_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+
 Future<void> main() async {
-  await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: "assets/.env");
   runApp(const MyApp());
 }
 
@@ -35,28 +36,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final items = [
-      "https://static.actu.fr/uploads/2021/01/cine-affiche-tenet.jpg",
-      "https://static.actu.fr/uploads/2021/01/cine-affiche-tenet.jpg",
-      "https://static.actu.fr/uploads/2021/01/cine-affiche-tenet.jpg",
-      "https://static.actu.fr/uploads/2021/01/cine-affiche-tenet.jpg",
-      "https://static.actu.fr/uploads/2021/01/cine-affiche-tenet.jpg",
-      "https://static.actu.fr/uploads/2021/01/cine-affiche-tenet.jpg",
-      "https://static.actu.fr/uploads/2021/01/cine-affiche-tenet.jpg",
-      "https://static.actu.fr/uploads/2021/01/cine-affiche-tenet.jpg",
-      "https://static.actu.fr/uploads/2021/01/cine-affiche-tenet.jpg",
-      "https://static.actu.fr/uploads/2021/01/cine-affiche-tenet.jpg",
-      "https://static.actu.fr/uploads/2021/01/cine-affiche-tenet.jpg",
-      "https://static.actu.fr/uploads/2021/01/cine-affiche-tenet.jpg",
-    ];
 
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: SizedBox(
           height: 200,
-          child: Carousel(
-            items: items,
-          ),
+          child: MoviePopularView(),
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
