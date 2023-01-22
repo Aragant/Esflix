@@ -1,8 +1,8 @@
-import 'package:esflix/carousel.dart';
+import 'package:esflix/common_widgets/content_media_list.dart';
 import 'package:flutter/material.dart';
 
-import 'movie.dart';
-import 'movie_TMDB_web_service.dart';
+import '../domain/movie.dart';
+import '../application/movie_TMDB_web_service.dart';
 
 class MoviePopularView extends StatefulWidget {
   const MoviePopularView({super.key});
@@ -31,7 +31,9 @@ class _MoviePopularViewState extends State<MoviePopularView> {
       final movies = await MovieTMDBWebService.retrievePopular();
       setState(() {
         _movies = movies;
-        _moviesPosterUrl = movies.map((e) => "https://image.tmdb.org/t/p/w500/${e.posterUrl}").toList();
+        _moviesPosterUrl = movies
+            .map((e) => "https://image.tmdb.org/t/p/w500/${e.posterUrl}")
+            .toList();
         _isLoading = false;
       });
     } catch (error) {
@@ -66,7 +68,7 @@ class _MoviePopularViewState extends State<MoviePopularView> {
   }
 
   Widget _buildMovies() {
-    return Carousel(
+    return ContentMediaList(
       items: _moviesPosterUrl,
     );
   }
@@ -82,6 +84,4 @@ class _MoviePopularViewState extends State<MoviePopularView> {
       return _buildMovies();
     }
   }
-
-  
 }

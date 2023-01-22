@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class Carousel extends StatelessWidget {
+class ContentMediaList extends StatelessWidget {
   final List<String> items;
 
-  const Carousel({super.key, required this.items});
+  const ContentMediaList({super.key, required this.items});
 
   // A carousel is a widget that displays a list of items in a horizontal
   // scrollable list. It is a stateful widget because it needs to keep track

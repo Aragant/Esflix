@@ -1,7 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
-import 'movie.dart';
+import '../domain/movie.dart';
 
 class MovieTMDBWebService {
   static final _apiKey = dotenv.env['TMDB_API_KEY']!;
