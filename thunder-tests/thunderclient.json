@@ -54,11 +54,11 @@
     "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
     "containerId": "61b15d87-650a-459e-90c0-a6a2804ce0f6",
     "name": "Session With Login",
-    "url": "{{AUTH}}/token/validate_with_login?{{TOKEN_TMDB}}&username=Aragant&password=CCDDRtomtom77",
+    "url": "{{AUTH}}/token/validate_with_login?{{TOKEN_TMDB}}&username=Aragant&password=CCDDRtomtom77&request_token=77207e2989c1f95ac9476eb698267db7fb92da1d",
     "method": "GET",
     "sortNum": 50000,
     "created": "2023-01-22T16:00:34.259Z",
-    "modified": "2023-01-23T13:38:03.883Z",
+    "modified": "2023-01-23T18:50:48.426Z",
     "headers": [],
     "params": [
       {
@@ -78,35 +78,22 @@
       },
       {
         "name": "request_token",
-        "value": "5686219cf900c59054ef30ec10921fa159706a4b",
-        "isDisabled": true,
+        "value": "77207e2989c1f95ac9476eb698267db7fb92da1d",
         "isPath": false
       }
     ],
     "tests": []
   },
   {
-    "_id": "94b70b74-3926-452e-855a-92b85d1d8c85",
-    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
-    "containerId": "",
-    "name": "Account",
-    "url": "",
-    "method": "GET",
-    "sortNum": 60000,
-    "created": "2023-01-22T16:05:25.894Z",
-    "modified": "2023-01-22T16:05:25.894Z",
-    "headers": []
-  },
-  {
     "_id": "95057132-8a2a-4700-8361-70a0e39357c8",
     "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
     "containerId": "61b15d87-650a-459e-90c0-a6a2804ce0f6",
     "name": "Session",
-    "url": "{{AUTH}}/session/new?{{TOKEN_TMDB}}&request_token=5686219cf900c59054ef30ec10921fa159706a4b",
+    "url": "{{AUTH}}/session/new?{{TOKEN_TMDB}}&request_token=77207e2989c1f95ac9476eb698267db7fb92da1d",
     "method": "POST",
     "sortNum": 70000,
     "created": "2023-01-23T11:35:31.252Z",
-    "modified": "2023-01-23T13:31:46.068Z",
+    "modified": "2023-01-23T18:50:56.341Z",
     "headers": [],
     "params": [
       {
@@ -116,7 +103,32 @@
       },
       {
         "name": "request_token",
-        "value": "5686219cf900c59054ef30ec10921fa159706a4b",
+        "value": "77207e2989c1f95ac9476eb698267db7fb92da1d",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "fc5ee70f-8a4c-4bb7-a8ad-c172bb600b97",
+    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "containerId": "57b11b4d-561a-49e2-9d28-f5e1aaf6f9e9",
+    "name": "Details",
+    "url": "{{ACCOUNT}}?{{TOKEN_TMDB}}&session_id=63de70e903f7c2eb2db1b0b4d1800a146df35737",
+    "method": "GET",
+    "sortNum": 80000,
+    "created": "2023-01-23T18:46:44.936Z",
+    "modified": "2023-01-23T18:51:06.566Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "{{TOKEN_TMDB}}",
+        "value": "",
+        "isPath": false
+      },
+      {
+        "name": "session_id",
+        "value": "63de70e903f7c2eb2db1b0b4d1800a146df35737",
         "isPath": false
       }
     ],

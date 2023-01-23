@@ -26,6 +26,10 @@
       {
         "name": "AUTH",
         "value": "{{URL}}/authentication"
+      },
+      {
+        "name": "ACCOUNT",
+        "value": "{{URL}}/account"
       }
     ]
   }
