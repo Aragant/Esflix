@@ -2,7 +2,7 @@ import 'package:esflix/features/auth/domain/tmdb_session.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../../assets/tmdb_constants.dart' as tmdb;
-import '../application/authentification_tmdb_web_service.dart';
+import '../application/auth_tmdb_web_service.dart';
 
 class LoginWebView extends StatefulWidget {
   const LoginWebView({super.key});
@@ -26,7 +26,7 @@ class _LoginWebViewState extends State<LoginWebView> {
       _isLoading = true;
     });
     try {
-      await AuthentificationTMDBWebService.createRequestToken();
+      await AuthTmdbWebService.createRequestToken();
       setState(() {
         _isLoading = false;
       });

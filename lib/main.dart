@@ -1,12 +1,14 @@
-import 'package:esflix/features/account/presentation/account_view.dart';
+import 'package:esflix/features/auth/application/auth_tmdb_service.dart';
+import 'package:esflix/features/auth/domain/tmdb_session.dart';
+import 'package:esflix/features/auth/presentation/login_view.dart';
 import 'package:esflix/home_view.dart';
 import 'package:esflix/features/movie/presentation/movie_popular_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-
 Future<void> main() async {
   await dotenv.load(fileName: "lib/assets/.env");
+  AuthTmdbService.init();
   runApp(const MyApp());
 }
 
@@ -42,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeView(),
     MoviePopularView(),
     Text('Search'),
-    AccountView(),
+    LoginView(),
   ];
 
   void _onItemTapped(int index) {
@@ -53,27 +55,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(child: _mainViews[_selectedIndex]),
-      bottomNavigationBar: BottomNavigationBar(items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.movie),
-          label: 'Movies',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Search',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle),
-          label: 'Account',
-        ),
-      ],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.movie),
+            label: 'Movies',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'Account',
+          ),
+        ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         fixedColor: Theme.of(context).colorScheme.secondary,
