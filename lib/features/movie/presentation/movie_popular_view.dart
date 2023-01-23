@@ -29,12 +29,11 @@ class _MoviePopularViewState extends State<MoviePopularView> {
       _isLoading = true;
     });
     try {
-      final movies = await MovieTmdbWebService.retrievePopular();
+      final movies = await MovieTmdbWebService.getPopular();
       setState(() {
         _movies = movies;
-        _moviesPosterUrl = movies
-            .map((e) => "${tmdb.IMAGE_URL}/${e.posterUrl}")
-            .toList();
+        _moviesPosterUrl =
+            movies.map((e) => "${tmdb.IMAGE_URL}/${e.posterUrl}").toList();
         _isLoading = false;
       });
     } catch (error) {

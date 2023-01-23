@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import '../../auth/domain/tmdb_session.dart';
-import '../domain/Account.dart';
+import '../domain/account.dart';
 import '../../../assets/tmdb_constants.dart' as tmdb;
 import 'package:http/http.dart' as http;
 

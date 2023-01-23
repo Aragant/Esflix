@@ -10,7 +10,7 @@ class MovieTmdbWebService {
   static final _baseUrl = '${tmdb.BASE_URL}/movie';
   static final _language = tmdb.LANGUAGE;
 
-  static Future<List<Movie>> retrievePopular() async {
+  static Future<List<Movie>> getPopular() async {
     final response = await http.get(Uri.parse(
         '$_baseUrl/popular?api_key=$_apiKey&language=$_language&page=1'));
 
@@ -21,7 +21,7 @@ class MovieTmdbWebService {
     final jsonBody = jsonDecode(response.body);
 
     final movies = <Movie>[];
-    
+
     for (final jsonMovie in jsonBody['results']) {
       movies.add(Movie.fromJson(jsonMovie));
     }

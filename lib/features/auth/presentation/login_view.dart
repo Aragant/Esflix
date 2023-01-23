@@ -1,3 +1,4 @@
+import 'package:esflix/features/account/presentation/account_detail_view.dart';
 import 'package:esflix/features/auth/application/auth_tmdb_service.dart';
 import 'package:esflix/features/auth/presentation/login_form_view.dart';
 import 'package:flutter/material.dart';
@@ -26,30 +27,16 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Widget _buildLogged() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text('You are logged in'),
-          ElevatedButton(
-            onPressed: () {
-              AuthTmdbService.logout();
-              setState(() {});
-            },
-            child: const Text('Logout'),
-          ),
-        ],
-      ),
-    );
+    return AccountDetailView(onLogout: updateLog);
   }
 
   Widget _buildNotLogged() {
     return LoginFormView(
-      onLogin: login,
+      onLogin: updateLog,
     );
   }
 
-  void login() {
+  void updateLog() {
     setState(() {});
   }
 }
