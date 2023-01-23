@@ -27,10 +27,4 @@ class Movie {
       rating: json['vote_average'].toDouble(),
     );
   }
-
-  static List<Movie> parseList(String responseBody) {
-    final parsed = jsonDecode(responseBody)['results'].cast<Map<String, dynamic>>();
-
-    return parsed.map<Movie>((json) => Movie.fromJson(json)).toList();
-  }
 }

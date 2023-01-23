@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../domain/movie.dart';
 import '../application/movie_tmdb_web_service.dart';
+import '../../../assets/tmdb_constants.dart' as tmdb;
 
 class MoviePopularView extends StatefulWidget {
   const MoviePopularView({super.key});
@@ -32,7 +33,7 @@ class _MoviePopularViewState extends State<MoviePopularView> {
       setState(() {
         _movies = movies;
         _moviesPosterUrl = movies
-            .map((e) => "https://image.tmdb.org/t/p/w500/${e.posterUrl}")
+            .map((e) => "${tmdb.IMAGE_URL}/${e.posterUrl}")
             .toList();
         _isLoading = false;
       });

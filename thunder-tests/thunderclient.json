@@ -54,11 +54,11 @@
     "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
     "containerId": "61b15d87-650a-459e-90c0-a6a2804ce0f6",
     "name": "Session With Login",
-    "url": "{{AUTH}}/token/validate_with_login?{{TOKEN_TMDB}}&username=Aragant&password=CCDDRtomtom77&request_token=a1ae2e11db0158f64ebb45e30e5a5b50ad3395e2",
+    "url": "{{AUTH}}/token/validate_with_login?{{TOKEN_TMDB}}&username=Aragant&password=CCDDRtomtom77&request_token=e34cb43eee6da9a1c2614807a9dae88f555a482a",
     "method": "GET",
     "sortNum": 50000,
     "created": "2023-01-22T16:00:34.259Z",
-    "modified": "2023-01-22T16:02:24.137Z",
+    "modified": "2023-01-23T11:32:53.768Z",
     "headers": [],
     "params": [
       {
@@ -78,7 +78,7 @@
       },
       {
         "name": "request_token",
-        "value": "a1ae2e11db0158f64ebb45e30e5a5b50ad3395e2",
+        "value": "e34cb43eee6da9a1c2614807a9dae88f555a482a",
         "isPath": false
       }
     ],
@@ -95,5 +95,30 @@
     "created": "2023-01-22T16:05:25.894Z",
     "modified": "2023-01-22T16:05:25.894Z",
     "headers": []
+  },
+  {
+    "_id": "95057132-8a2a-4700-8361-70a0e39357c8",
+    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "containerId": "61b15d87-650a-459e-90c0-a6a2804ce0f6",
+    "name": "Session",
+    "url": "{{AUTH}}/session/new?{{TOKEN_TMDB}}&request_token=e34cb43eee6da9a1c2614807a9da88f555a482a",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2023-01-23T11:35:31.252Z",
+    "modified": "2023-01-23T11:41:22.852Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "{{TOKEN_TMDB}}",
+        "value": "",
+        "isPath": false
+      },
+      {
+        "name": "request_token",
+        "value": "e34cb43eee6da9a1c2614807a9da88f555a482a",
+        "isPath": false
+      }
+    ],
+    "tests": []
   }
 ]

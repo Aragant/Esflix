@@ -1,3 +1,4 @@
+import 'package:esflix/features/account/presentation/account_view.dart';
 import 'package:esflix/home_view.dart';
 import 'package:esflix/features/movie/presentation/movie_popular_view.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 
 Future<void> main() async {
-  await dotenv.load(fileName: "assets/.env");
+  await dotenv.load(fileName: "lib/assets/.env");
   runApp(const MyApp());
 }
 
@@ -41,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeView(),
     MoviePopularView(),
     Text('Search'),
-    Text('Account'),
+    AccountView(),
   ];
 
   void _onItemTapped(int index) {
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: _mainViews[_selectedIndex],
+      body: SafeArea(child: _mainViews[_selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
