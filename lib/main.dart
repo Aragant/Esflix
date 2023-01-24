@@ -1,15 +1,16 @@
 import 'package:esflix/features/auth/application/auth_tmdb_service.dart';
-import 'package:esflix/features/auth/domain/tmdb_session.dart';
 import 'package:esflix/features/auth/presentation/login_view.dart';
 import 'package:esflix/home_view.dart';
 import 'package:esflix/features/movie/presentation/movie_popular_view.dart';
+import 'package:esflix/theme/dark_theme.dart';
+import 'package:esflix/theme/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: "lib/assets/.env");
   AuthTmdbService.init();
-  runApp(const MyApp());
+  return runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -20,12 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: const ColorScheme.light(
-          primary: Colors.red,
-          secondary: Colors.blue,
-        ),
-      ),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeMode.dark,
       home: const MyHomePage(),
     );
   }
@@ -56,8 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(child: _mainViews[_selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(
+
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

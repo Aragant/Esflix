@@ -108,7 +108,6 @@ class _AccountDetailViewState extends State<AccountDetailView> {
 
   Widget _buildAvatar() {
     if (_account.avatarPath != null) {
-      // profile picture in a circle
       return CircleAvatar(
         backgroundImage: NetworkImage('${tmdb.IMAGE_URL}/${_account.avatarPath!}'),
       );

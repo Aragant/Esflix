@@ -4,15 +4,15 @@ import '../../../utils/shared_preferences_utils.dart';
 class TmdbSessionInMemory{
 
   static Future<bool> setSessionId(String sessionId) async {
-    return await SharedPreferencesUtils.setString('session_id', sessionId);
+    return await SharedPreferencesUtils.saveData('session_id', sessionId);
   }
 
   static Future<String?> getSessionId() async {
-    return await SharedPreferencesUtils.getString('session_id');
+    return await SharedPreferencesUtils.readData('session_id');
   }
 
   static Future<bool> deleteSessionId() async {
-    return await SharedPreferencesUtils.setString('session_id', '');
+    return await SharedPreferencesUtils.saveData('session_id', '');
   }
 
 

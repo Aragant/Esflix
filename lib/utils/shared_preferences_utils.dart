@@ -1,13 +1,27 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesUtils{
-  static Future setString(String key, String value) async {
+  static Future<bool> saveData(String key, dynamic value) async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.setString(key, value);
+    if (value is int) {
+      return prefs.setInt(key, value);
+    } else if (value is String) {
+      return prefs.setString(key, value);
+    } else if (value is bool) {
+      return prefs.setBool(key, value);
+    } else {
+      throw Exception('Type of value is not supported');
+    }
   }
 
-  static Future<String?> getString(String key) async {
+  static Future<dynamic> readData(String key) async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(key);
+    dynamic obj = prefs.get(key);
+    return obj;
+  }
+
+  static Future<bool> deleteData(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.remove(key);
   }
 }

@@ -20,6 +20,7 @@ class _LoginFormViewState extends State<LoginFormView> {
     return Form(
         key: _formKey,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
               controller: _usernameController,
