@@ -16,7 +16,7 @@ class ContentMediaList extends StatelessWidget {
       itemBuilder: (context, index) {
         return Container(
           margin: const EdgeInsets.all(8),
-          child: Image.network(items[index]),
+          child: Image.network("https://image.tmdb.org/t/p/w500/${items[index]}"),
         );
       },
     );

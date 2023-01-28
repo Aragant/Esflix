@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import '../../../assets/tmdb_constants.dart' as tmdb;
@@ -20,12 +21,26 @@ class MovieTmdbWebService {
 
     final jsonBody = jsonDecode(response.body);
 
-    final movies = <Movie>[];
+    final moviesId =
+        (jsonBody['results'] as List<dynamic>).map((e) => e['id']).toList();
 
-    for (final jsonMovie in jsonBody['results']) {
-      movies.add(Movie.fromJson(jsonMovie));
-    }
+    final movies = Future.wait(moviesId.map((e) => getDetails(e)));
 
     return movies;
+  }
+
+  static Future<Movie> getDetails(int movieId) async {
+    final response = await http.get(
+        Uri.parse('$_baseUrl/$movieId?api_key=$_apiKey&language=$_language'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load movie details');
+    }
+
+    final jsonBody = jsonDecode(response.body);
+
+    final movie = Movie.fromJson(jsonBody);
+
+    return movie;
   }
 }

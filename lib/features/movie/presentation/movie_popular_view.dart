@@ -1,9 +1,8 @@
-import 'package:esflix/common_widgets/content_media_list.dart';
+import 'package:esflix/features/movie/presentation/movie_list.dart';
 import 'package:flutter/material.dart';
 
 import '../domain/movie.dart';
 import '../application/movie_tmdb_web_service.dart';
-import '../../../assets/tmdb_constants.dart' as tmdb;
 
 class MoviePopularView extends StatefulWidget {
   const MoviePopularView({super.key});
@@ -16,7 +15,6 @@ class _MoviePopularViewState extends State<MoviePopularView> {
   bool _isLoading = true;
   String? _exception;
   List<Movie> _movies = [];
-  List<String> _moviesPosterUrl = [];
 
   @override
   void initState() {
@@ -32,8 +30,6 @@ class _MoviePopularViewState extends State<MoviePopularView> {
       final movies = await MovieTmdbWebService.getPopular();
       setState(() {
         _movies = movies;
-        _moviesPosterUrl =
-            movies.map((e) => "${tmdb.IMAGE_URL}/${e.posterUrl}").toList();
         _isLoading = false;
       });
     } catch (error) {
@@ -68,8 +64,8 @@ class _MoviePopularViewState extends State<MoviePopularView> {
   }
 
   Widget _buildMovies() {
-    return ContentMediaList(
-      items: _moviesPosterUrl,
+    return MovieList(
+      movies: _movies,
     );
   }
 

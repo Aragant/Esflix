@@ -133,5 +133,30 @@
       }
     ],
     "tests": []
+  },
+  {
+    "_id": "8b40f611-7e27-4440-a93d-31a402c4262d",
+    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "containerId": "9c0ca9d6-e01a-41f1-a15b-645d8053240f",
+    "name": "Detail",
+    "url": "{{MOVIE}}/10907?{{TOKEN_TMDB}}&{{LANG}}",
+    "method": "GET",
+    "sortNum": 90000,
+    "created": "2023-01-24T12:48:24.538Z",
+    "modified": "2023-01-27T14:15:44.289Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "{{TOKEN_TMDB}}",
+        "value": "",
+        "isPath": false
+      },
+      {
+        "name": "{{LANG}}",
+        "value": "",
+        "isPath": false
+      }
+    ],
+    "tests": []
   }
 ]
