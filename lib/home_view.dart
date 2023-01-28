@@ -12,7 +12,7 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Esflix'),
       ),
-      body: MoviePopularView(),
+      body: const MoviePopularView(),
     ); 
   }
 }

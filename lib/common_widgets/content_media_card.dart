@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ContentMediaCard extends StatelessWidget {
-  String title;
-  String urlImg;
-  String genre;
+  final String title;
+  final String urlImg;
+  final String genre;
 
-  ContentMediaCard({
+  const ContentMediaCard({super.key, 
     required this.title,
     required this.urlImg,
     required this.genre,
@@ -36,7 +36,7 @@ class ContentMediaCard extends StatelessWidget {
             ],
           ),
           Container(
-            height: 70,
+            
             padding: const EdgeInsets.only(left: 5, top: 5, bottom: 5),
             color: Colors.grey[900],
             child: Column(
