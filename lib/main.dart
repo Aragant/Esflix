@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
+      
       home: const MyHomePage(),
     );
   }
@@ -57,14 +58,15 @@ class _MyHomePageState extends State<MyHomePage> {
       resizeToAvoidBottomInset: false,
       body: SafeArea(child: _mainViews[_selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.movie),
-            label: 'Movies',
+            icon: Icon(Icons.bookmark),
+            label: 'My list',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
@@ -77,8 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        fixedColor: Theme.of(context).colorScheme.secondary,
-        unselectedItemColor: Theme.of(context).colorScheme.primary,
+        fixedColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor: Theme.of(context).colorScheme.inversePrimary,
       ),
     );
   }

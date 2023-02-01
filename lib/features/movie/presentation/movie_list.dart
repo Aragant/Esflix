@@ -14,7 +14,7 @@ class MovieList extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemCount: movies.length,
       itemBuilder: (context, index) {
-        return ContentMediaCard(title: movies[index].title, urlImg: movies[index].posterPath, genre: movies[index].genres[0].name);
+        return ContentMediaCard(id: movies[index].id, title: movies[index].title, urlImg: movies[index].posterPath, genre: movies[index].genres[0].name);
       },
     );
   }

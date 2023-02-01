@@ -54,11 +54,11 @@
     "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
     "containerId": "61b15d87-650a-459e-90c0-a6a2804ce0f6",
     "name": "Session With Login",
-    "url": "{{AUTH}}/token/validate_with_login?{{TOKEN_TMDB}}&username=Aragant&password=CCDDRtomtom77&request_token=77207e2989c1f95ac9476eb698267db7fb92da1d",
+    "url": "{{AUTH}}/token/validate_with_login?{{TOKEN_TMDB}}&username=Aragant&password=CCDDRtomtom77&request_token=509e17ad55a98d1073861374425a7de35e586895",
     "method": "GET",
     "sortNum": 50000,
     "created": "2023-01-22T16:00:34.259Z",
-    "modified": "2023-01-23T18:50:48.426Z",
+    "modified": "2023-01-29T14:39:38.213Z",
     "headers": [],
     "params": [
       {
@@ -78,7 +78,7 @@
       },
       {
         "name": "request_token",
-        "value": "77207e2989c1f95ac9476eb698267db7fb92da1d",
+        "value": "509e17ad55a98d1073861374425a7de35e586895",
         "isPath": false
       }
     ],
@@ -89,11 +89,11 @@
     "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
     "containerId": "61b15d87-650a-459e-90c0-a6a2804ce0f6",
     "name": "Session",
-    "url": "{{AUTH}}/session/new?{{TOKEN_TMDB}}&request_token=77207e2989c1f95ac9476eb698267db7fb92da1d",
+    "url": "{{AUTH}}/session/new?{{TOKEN_TMDB}}&request_token=509e17ad55a98d1073861374425a7de35e586895",
     "method": "POST",
     "sortNum": 70000,
     "created": "2023-01-23T11:35:31.252Z",
-    "modified": "2023-01-23T18:50:56.341Z",
+    "modified": "2023-01-29T14:39:44.287Z",
     "headers": [],
     "params": [
       {
@@ -103,7 +103,7 @@
       },
       {
         "name": "request_token",
-        "value": "77207e2989c1f95ac9476eb698267db7fb92da1d",
+        "value": "509e17ad55a98d1073861374425a7de35e586895",
         "isPath": false
       }
     ],
@@ -114,21 +114,32 @@
     "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
     "containerId": "57b11b4d-561a-49e2-9d28-f5e1aaf6f9e9",
     "name": "Details",
-    "url": "{{ACCOUNT}}?{{TOKEN_TMDB}}&session_id=63de70e903f7c2eb2db1b0b4d1800a146df35737",
+    "url": "https://api.themoviedb.org/3/account?api_key=46acccd3d3113568a1606057699b5c46&language=en-US&session_id=427beb4a6ac2fd4140099b4bd439a8e41c876114",
     "method": "GET",
     "sortNum": 80000,
     "created": "2023-01-23T18:46:44.936Z",
-    "modified": "2023-01-23T18:51:06.566Z",
+    "modified": "2023-01-29T14:41:37.416Z",
     "headers": [],
     "params": [
       {
-        "name": "{{TOKEN_TMDB}}",
-        "value": "",
+        "name": "api_key",
+        "value": "46acccd3d3113568a1606057699b5c46",
+        "isPath": false
+      },
+      {
+        "name": "language",
+        "value": "en-US",
         "isPath": false
       },
       {
         "name": "session_id",
-        "value": "63de70e903f7c2eb2db1b0b4d1800a146df35737",
+        "value": "427beb4a6ac2fd4140099b4bd439a8e41c876114",
+        "isPath": false
+      },
+      {
+        "name": "page",
+        "value": "1",
+        "isDisabled": true,
         "isPath": false
       }
     ],
@@ -154,6 +165,76 @@
       {
         "name": "{{LANG}}",
         "value": "",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "abc75fa9-d16f-4190-abcc-0f6835cd1679",
+    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "containerId": "29d16bdf-495e-4139-99ff-e1c9e1225aa0",
+    "name": "CreatedList",
+    "url": "{{ACCOUNT}}/17056290/lists?{{TOKEN_TMDB}}&{{LANG}}&session_id=427beb4a6ac2fd4140099b4bd439a8e41c876114",
+    "method": "GET",
+    "sortNum": 110000,
+    "created": "2023-01-29T14:32:44.070Z",
+    "modified": "2023-01-29T14:42:41.558Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "{{TOKEN_TMDB}}",
+        "value": "",
+        "isPath": false
+      },
+      {
+        "name": "{{LANG}}",
+        "value": "",
+        "isPath": false
+      },
+      {
+        "name": "session_id",
+        "value": "427beb4a6ac2fd4140099b4bd439a8e41c876114",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "5faabf57-824b-4594-8b41-d079f5cbbc26",
+    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "containerId": "29d16bdf-495e-4139-99ff-e1c9e1225aa0",
+    "name": "CreateList",
+    "url": "https://api.themoviedb.org/3/list?{{TOKEN_TMDB}}&name=testName&description=testDescription&language=fr&session_id=427beb4a6ac2fd4140099b4bd439a8e41c876114",
+    "method": "POST",
+    "sortNum": 120000,
+    "created": "2023-01-29T14:37:42.167Z",
+    "modified": "2023-01-29T14:43:46.837Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "{{TOKEN_TMDB}}",
+        "value": "",
+        "isPath": false
+      },
+      {
+        "name": "name",
+        "value": "testName",
+        "isPath": false
+      },
+      {
+        "name": "description",
+        "value": "testDescription",
+        "isPath": false
+      },
+      {
+        "name": "language",
+        "value": "fr",
+        "isPath": false
+      },
+      {
+        "name": "session_id",
+        "value": "427beb4a6ac2fd4140099b4bd439a8e41c876114",
         "isPath": false
       }
     ],

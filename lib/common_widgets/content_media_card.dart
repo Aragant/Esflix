@@ -1,11 +1,16 @@
+import 'package:esflix/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 
 class ContentMediaCard extends StatelessWidget {
+  final int id;
   final String title;
   final String urlImg;
   final String genre;
+  
 
-  const ContentMediaCard({super.key, 
+  const ContentMediaCard({
+    super.key,
+    required this.id,
     required this.title,
     required this.urlImg,
     required this.genre,
@@ -36,7 +41,7 @@ class ContentMediaCard extends StatelessWidget {
             ],
           ),
           Container(
-            
+            height: 65,
             padding: const EdgeInsets.only(left: 5, top: 5, bottom: 5),
             color: Colors.grey[900],
             child: Column(
@@ -49,15 +54,16 @@ class ContentMediaCard extends StatelessWidget {
                     title,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: Theme.of(context).textTheme.headline5?.fontSize,
-                    ),
+                    style: AppTexteTheme.titleCard,
                   ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(genre, style: Theme.of(context).textTheme.headline4),
+                    Text(
+                      genre,
+                      style: AppTexteTheme.subTitleCard,
+                    ),
                     IconButton(
                       padding: const EdgeInsets.all(0),
                       constraints: const BoxConstraints(),
@@ -74,5 +80,7 @@ class ContentMediaCard extends StatelessWidget {
     );
   }
 
-  void _option() {}
+  void _option() {
+
+  }
 }

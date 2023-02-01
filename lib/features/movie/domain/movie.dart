@@ -2,6 +2,7 @@
 import 'package:esflix/features/movie/domain/genre.dart';
 
 class Movie {
+  final int id;
   final String title;
   final String posterPath;
   final String backdropUrl;
@@ -11,6 +12,7 @@ class Movie {
   final double rating;
 
   Movie({
+    required this.id,
     required this.title,
     required this.posterPath,
     required this.backdropUrl,
@@ -22,6 +24,7 @@ class Movie {
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
+      id: json['id'],
       title: json['title'],
       posterPath: json['poster_path'],
       backdropUrl: json['backdrop_path'],
