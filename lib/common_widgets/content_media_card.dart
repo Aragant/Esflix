@@ -1,12 +1,17 @@
 import 'package:esflix/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 
+enum ContentOptions {
+  addToWatchList,
+  share,
+  report,
+}
+
 class ContentMediaCard extends StatelessWidget {
   final int id;
   final String title;
   final String urlImg;
   final String genre;
-  
 
   const ContentMediaCard({
     super.key,
@@ -64,12 +69,44 @@ class ContentMediaCard extends StatelessWidget {
                       genre,
                       style: AppTexteTheme.subTitleCard,
                     ),
-                    IconButton(
+                    Container(
                       padding: const EdgeInsets.all(0),
-                      constraints: const BoxConstraints(),
-                      onPressed: _option,
-                      icon: const Icon(Icons.more_vert),
-                    )
+                      child: PopupMenuButton(
+                        padding: const EdgeInsets.all(0),
+                        itemBuilder: (BuildContext context) => [
+                          const PopupMenuItem(
+                            value: ContentOptions.addToWatchList,
+                            child: Text('ajouter à la watchlist'),
+                          ),
+                          const PopupMenuItem(
+                            value: ContentOptions.share,
+                            child: Text('partager'),
+                          ),
+                          const PopupMenuItem(
+                            value: ContentOptions.report,
+                            child: Text('signaler'),
+                          ),
+                        ],
+                        onSelected: ((value) {
+                          if (value == ContentOptions.addToWatchList) {
+                            
+                          } 
+                          else if (value == ContentOptions.share) {
+
+                          } 
+                          else if (value == ContentOptions.report) {
+
+                          }
+                        }),
+                        child: Container(
+                          padding: const EdgeInsets.all(0),
+                          child: Icon(
+                            Icons.more_vert,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -78,9 +115,5 @@ class ContentMediaCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void _option() {
-
   }
 }
