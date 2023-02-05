@@ -17,4 +17,8 @@ class ListService {
   static Future<bool> createWatchList() async {
     return await ListTmdbWebService.createList("Watchlist", "Watchlist");
   }
+
+  static Future<bool> addMovieToWatchlist(int idMovie) async{
+    
+  }
 }
