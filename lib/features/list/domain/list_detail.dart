@@ -1,20 +1,16 @@
-import '../../movie/domain/movie.dart';
-
-class MovieList {
+class ListDetail {
   final int id;
   final String name;
   final String description;
-  final List<Movie>? movies;
 
-  MovieList({
+  ListDetail({
     required this.id,
     required this.name,
     required this.description,
-    this.movies = const [],
   });
 
-  factory MovieList.fromJson(Map<String, dynamic> json) {
-    return MovieList(
+  factory ListDetail.fromJson(Map<String, dynamic> json) {
+    return ListDetail(
       id: json['id'] as int,
       name: json['name'] as String,
       description: json['description'] as String,
