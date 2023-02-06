@@ -89,9 +89,31 @@ class ContentMediaCard extends StatelessWidget {
                             child: Text('signaler'),
                           ),
                         ],
-                        onSelected: ((value) {
+                        onSelected: ((value) async {
                           if (value == ContentOptions.addToWatchList) {
-                            ListService.addMovieToWatchlist(id);
+                            if (await ListService.addMovieToWatchlist(id)) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  backgroundColor: Colors.green,
+                                  content: Text(
+                                    'Ajouté à la watchlist',
+                                    style: AppTexteTheme.snackbar,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  backgroundColor: Colors.red,
+                                  content: Text(
+                                    'Déjà dans la watchlist',
+                                    style: AppTexteTheme.snackbar,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              );
+                            }
                           } else if (value == ContentOptions.share) {
                           } else if (value == ContentOptions.report) {}
                         }),

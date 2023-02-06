@@ -17,9 +17,12 @@ class ListTmdbWebService {
       },
     );
 
-    if (response.statusCode != 201) {
-      print(response.statusCode);
+    if (response.statusCode != 201 && response.statusCode != 403) {
       throw Exception('Failed to add movie to list');
+    }
+
+    if (response.statusCode == 403) {
+      return false;
     }
 
     return true;
