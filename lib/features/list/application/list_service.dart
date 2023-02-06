@@ -18,7 +18,15 @@ class ListService {
     return await ListTmdbWebService.createList("Watchlist", "Watchlist");
   }
 
+  static Future<ListDetail> getWatchList() async {
+    List<ListDetail> lists = await ListTmdbWebService.getLists();
+    return lists.firstWhere((element) => element.name == "Watchlist");
+  }
+
+
+ 
   static Future<bool> addMovieToWatchlist(int idMovie) async{
-    
+    ListDetail watchList = await getWatchList();
+    return await ListTmdbWebService.addMovieToList(watchList.id, idMovie);
   }
 }

@@ -6,20 +6,19 @@ import 'package:http/http.dart' as http;
 import '../../../assets/tmdb_constants.dart' as tmdb;
 import '../../auth/domain/tmdb_session.dart';
 
-
-
 class ListTmdbWebService {
-
   static Future<bool> addMovieToList(int listId, int movieId) async {
+
     final response = await http.post(
       Uri.parse(
-          '${tmdb.BASE_URL}/list/$listId/add_item?&session_id=${TmdbSession.sessionId}&api_key=${tmdb.API_KEY}}'),
+          '${tmdb.BASE_URL}/list/$listId/add_item?&session_id=${TmdbSession.sessionId}&api_key=${tmdb.API_KEY}'),
       body: {
-        'media_id': movieId.toString(),
+        "media_id": movieId.toString(),
       },
     );
 
     if (response.statusCode != 201) {
+      print(response.statusCode);
       throw Exception('Failed to add movie to list');
     }
 
@@ -42,8 +41,6 @@ class ListTmdbWebService {
         jsonBody['results'].map((x) => ListDetail.fromJson(x)));
 
     return lists;
-
-    
   }
 
   static Future<bool> createList(String name, String description) async {
@@ -54,7 +51,6 @@ class ListTmdbWebService {
         'name': name,
         'description': description,
         'language': 'fr',
-
       },
     );
 

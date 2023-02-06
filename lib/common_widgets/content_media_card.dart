@@ -1,3 +1,4 @@
+import 'package:esflix/features/list/application/list_service.dart';
 import 'package:esflix/features/list/application/list_tmdb_web_service.dart';
 import 'package:esflix/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
@@ -90,7 +91,7 @@ class ContentMediaCard extends StatelessWidget {
                         ],
                         onSelected: ((value) {
                           if (value == ContentOptions.addToWatchList) {
-                            
+                            ListService.addMovieToWatchlist(id);
                           } else if (value == ContentOptions.share) {
                           } else if (value == ContentOptions.report) {}
                         }),
