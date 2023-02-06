@@ -28,7 +28,7 @@ class ContentMediaCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(8),
       width: 150,
-      height: 200,
+      height: 265,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

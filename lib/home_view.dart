@@ -22,20 +22,34 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              'POPULAR MOVIES',
-              style: AppTexteTheme.title,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                'POPULAR MOVIES',
+                style: AppTexteTheme.title,
+              ),
             ),
-          ),
-          Expanded(
-            child: MoviePopularView(),
-          ),
-        ],
+            SizedBox(
+              height: 281,
+              child: MoviePopularView(),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                'WATCHLIST',
+                style: AppTexteTheme.title,
+              ),
+            ),
+            SizedBox(
+              height: 281,
+              child: MoviePopularView(),
+            ),
+          ],
+        ),
       ),
     );
   }
