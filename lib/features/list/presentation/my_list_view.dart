@@ -20,8 +20,7 @@ class _MyListViewState extends State<MyListView> {
 
   bool _isLoading = true;
   String? _exception;
-  Map<int, List<Movie>> _listsMovies = {};
-  List<String> _listsNames = [];
+  Map<ListDetail, List<Movie>> _listsMovies = {};
 
   @override
   void initState() {
@@ -35,13 +34,11 @@ class _MyListViewState extends State<MyListView> {
     });
     try {
       List<ListDetail> listsDetails = await ListTmdbWebService.getLists();
-      List<String> listsNames = listsDetails.map((e) => e.name).toList();
-      Map<int, List<Movie>> listsMovies = {
+      Map<ListDetail, List<Movie>> listsMovies = {
         for (var list in listsDetails)
-          list.id: await ListTmdbWebService.getListMovies(list.id)
+          list: await ListTmdbWebService.getListMovies(list.id)
       };
       setState(() {
-        _listsNames = listsNames;
         _listsMovies = listsMovies;
         _isLoading = false;
       });
@@ -84,7 +81,7 @@ class _MyListViewState extends State<MyListView> {
 
   Widget _buildListView() {
     return DefaultTabController(
-      length: _listsNames.length,
+      length: _listsMovies.length,
       child: Scaffold(
         appBar: AppBar(
           title: const Text("My Lists"),
@@ -102,9 +99,9 @@ class _MyListViewState extends State<MyListView> {
           bottom: TabBar(
             indicatorColor: Theme.of(context).colorScheme.primary,
             isScrollable: true,
-            tabs: _listsNames
+            tabs: _listsMovies.keys
                 .map((e) => Tab(
-                      text: e,
+                      text: e.name,
                     ))
                 .toList(),
           ),
@@ -123,21 +120,23 @@ class _MyListViewState extends State<MyListView> {
                               urlImg: e.value[index].posterPath,
                               genre: e.value[index].genres[0].name,
                               reloadList: reload,
-                              idList: e.key,
+                              idList: e.key.id,
                             );
                           },
                         ),
                       ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(context).colorScheme.error,
+                      if (e.key.name != "Watchlist")
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.error,
+                          ),
+                          onPressed: () async {
+                            await ListTmdbWebService.deleteList(e.key.id);
+                            reload();
+                          },
+                          child: const Text("DELETE LIST"),
                         ),
-                        onPressed: () async {
-                          await ListTmdbWebService.deleteList(e.key);
-                          reload();
-                        },
-                        child: const Text("DELETE LIST"),
-                      ),
                     ],
                   ))
               .toList(),
