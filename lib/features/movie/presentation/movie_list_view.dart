@@ -5,10 +5,10 @@ import '../domain/movie.dart';
 
 class MovieListView extends StatelessWidget {
   final List<Movie> movies;
-  VoidCallback watchlistCallback;
+  final VoidCallback watchlistCallback;
   final int idList;
 
-  MovieListView({
+  const MovieListView({
     super.key,
     required this.movies,
     required this.watchlistCallback,

@@ -20,10 +20,8 @@ class _MyListViewState extends State<MyListView> {
 
   bool _isLoading = true;
   String? _exception;
-  List<ListDetail> _listsDetails = [];
   Map<int, List<Movie>> _listsMovies = {};
   List<String> _listsNames = [];
-  List<int> _listsIds = [];
 
   @override
   void initState() {
@@ -42,12 +40,9 @@ class _MyListViewState extends State<MyListView> {
         for (var list in listsDetails)
           list.id: await ListTmdbWebService.getListMovies(list.id)
       };
-      List<int> listsIds = listsDetails.map((e) => e.id).toList();
       setState(() {
-        _listsDetails = listsDetails;
         _listsNames = listsNames;
         _listsMovies = listsMovies;
-        _listsIds = listsIds;
         _isLoading = false;
       });
     } catch (error) {
@@ -134,7 +129,6 @@ class _MyListViewState extends State<MyListView> {
                         ),
                       ),
                       ElevatedButton(
-                        child: const Text("DELETE LIST"),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).colorScheme.error,
                         ),
@@ -142,6 +136,7 @@ class _MyListViewState extends State<MyListView> {
                           await ListTmdbWebService.deleteList(e.key);
                           reload();
                         },
+                        child: const Text("DELETE LIST"),
                       ),
                     ],
                   ))
@@ -203,7 +198,7 @@ class _MyListViewState extends State<MyListView> {
                         _listNameController.text,
                         _listDescController.text,
                       );
-                      Navigator.pop(context);
+                      if (mounted) Navigator.pop(context);
                       reload();
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(

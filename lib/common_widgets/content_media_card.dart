@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 enum ContentOptions {
   addToWatchList,
+  addToList,
   share,
-  report,
 }
 
 class ContentMediaCard extends StatefulWidget {
@@ -14,10 +14,10 @@ class ContentMediaCard extends StatefulWidget {
   final String title;
   final String urlImg;
   final String genre;
-  VoidCallback reloadList;
+  final VoidCallback reloadList;
   final int idList;
 
-  ContentMediaCard({
+  const ContentMediaCard({
     super.key,
     required this.id,
     required this.title,
@@ -101,14 +101,14 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
         itemBuilder: (BuildContext context) => [
           const PopupMenuItem(
             value: ContentOptions.addToWatchList,
-            child: Text('ajouter à la watchlist'),
+            child: Text('Add to watchlist'),
+          ),
+          const PopupMenuItem(
+            value: ContentOptions.addToList,
+            child: Text('Add to watchlist'),
           ),
           const PopupMenuItem(
             value: ContentOptions.share,
-            child: Text('partager'),
-          ),
-          const PopupMenuItem(
-            value: ContentOptions.report,
             child: Text('signaler'),
           ),
         ],
@@ -120,7 +120,7 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
                 const SnackBar(
                   backgroundColor: Colors.green,
                   content: Text(
-                    'Ajouté à la watchlist',
+                    'The movie has been added to the watchlist',
                     style: AppTexteTheme.snackbar,
                     textAlign: TextAlign.center,
                   ),
@@ -131,15 +131,16 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
                 const SnackBar(
                   backgroundColor: Colors.red,
                   content: Text(
-                    'Déjà dans la watchlist',
+                    'The movie has not been added to the watchlist',
                     style: AppTexteTheme.snackbar,
                     textAlign: TextAlign.center,
                   ),
                 ),
               );
             }
-          } else if (value == ContentOptions.share) {
-          } else if (value == ContentOptions.report) {}
+          } else if (value == ContentOptions.addToList) {
+
+          } else if (value == ContentOptions.share) {}
         }),
         child: Container(
           padding: const EdgeInsets.all(0),
@@ -164,10 +165,6 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
           ),
           const PopupMenuItem(
             value: ContentOptions.share,
-            child: Text('partager'),
-          ),
-          const PopupMenuItem(
-            value: ContentOptions.report,
             child: Text('signaler'),
           ),
         ],
@@ -200,8 +197,7 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
                 ),
               );
             }
-          } else if (value == ContentOptions.share) {
-          } else if (value == ContentOptions.report) {}
+          } else if (value == ContentOptions.share) {}
         }),
         child: Container(
           padding: const EdgeInsets.all(0),

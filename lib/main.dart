@@ -1,5 +1,4 @@
 import 'package:esflix/features/auth/application/auth_tmdb_service.dart';
-import 'package:esflix/features/auth/domain/tmdb_session.dart';
 import 'package:esflix/features/auth/presentation/login_view.dart';
 import 'package:esflix/features/list/presentation/my_list_view.dart';
 import 'package:esflix/home_view.dart';
@@ -7,7 +6,6 @@ import 'package:esflix/theme/dark_theme.dart';
 import 'package:esflix/theme/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:esflix/features/list/presentation/my_list_view.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: "lib/assets/.env");

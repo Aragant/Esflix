@@ -1,5 +1,4 @@
 import 'package:esflix/features/account/application/account_tmdb_web_service.dart';
-import 'package:esflix/features/account/domain/account.dart';
 import 'package:esflix/features/list/application/list_service.dart';
 
 import 'auth_tmdb_web_service.dart';

@@ -1,6 +1,5 @@
 import 'package:esflix/features/list/application/list_tmdb_web_service.dart';
 import 'package:esflix/features/list/domain/list_detail.dart';
-import 'package:esflix/features/list/domain/movie_list.dart';
 
 import '../../movie/domain/movie.dart';
 
