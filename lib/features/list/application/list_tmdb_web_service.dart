@@ -104,4 +104,18 @@ class ListTmdbWebService {
 
     return true;
   }
+
+  static Future<bool> deleteList(int listId) async {
+    final response = await http.delete(
+      Uri.parse(
+          '${tmdb.BASE_URL}/list/${listId.toString()}?session_id=${TmdbSession.sessionId}&api_key=${tmdb.API_KEY}'),
+    );
+
+    print(response.statusCode);
+    if (response.statusCode != 201 && response.statusCode != 500) {
+      throw Exception('Failed to delete list');
+    }
+
+    return true;
+  }
 }

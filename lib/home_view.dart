@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:esflix/features/list/application/list_service.dart';
 import 'package:esflix/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  late var timer;
   bool _isLoading = true;
   String? _exception;
   List<Movie> _moviesPopular = [];
@@ -47,10 +50,12 @@ class _HomeViewState extends State<HomeView> {
         _isLoading = false;
       });
     } catch (error) {
-      setState(() {
-        _exception = error.toString();
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _exception = error.toString();
+          _isLoading = false;
+        });
+      }
     }
   }
 

@@ -51,10 +51,12 @@ class _MyListViewState extends State<MyListView> {
         _isLoading = false;
       });
     } catch (error) {
-      setState(() {
-        _exception = error.toString();
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _exception = error.toString();
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -133,7 +135,11 @@ class _MyListViewState extends State<MyListView> {
                       ),
                       ElevatedButton(
                         child: const Text("DELETE LIST"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.error,
+                        ),
                         onPressed: () async {
+                          await ListTmdbWebService.deleteList(e.key);
                           reload();
                         },
                       ),
