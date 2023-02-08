@@ -9,26 +9,36 @@ enum ContentOptions {
   report,
 }
 
-class ContentMediaCard extends StatelessWidget {
+class ContentMediaCard extends StatefulWidget {
   final int id;
   final String title;
   final String urlImg;
   final String genre;
+  VoidCallback reloadList;
+  final int idList;
 
-  const ContentMediaCard({
+  ContentMediaCard({
     super.key,
     required this.id,
     required this.title,
     required this.urlImg,
     required this.genre,
+    required this.reloadList,
+    this.idList = 0,
   });
+
+  @override
+  State<ContentMediaCard> createState() => _ContentMediaCardState();
+}
+
+class _ContentMediaCardState extends State<ContentMediaCard> {
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(8),
       width: 150,
-      height: 265,
+      height: 268,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -39,8 +49,8 @@ class ContentMediaCard extends StatelessWidget {
                 height: 200,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image:
-                        NetworkImage("https://image.tmdb.org/t/p/w500/$urlImg"),
+                    image: NetworkImage(
+                        "https://image.tmdb.org/t/p/w500/${widget.urlImg}"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -48,7 +58,7 @@ class ContentMediaCard extends StatelessWidget {
             ],
           ),
           Container(
-            height: 65,
+            height: 68,
             padding: const EdgeInsets.only(left: 5, top: 5, bottom: 5),
             color: Colors.grey[900],
             child: Column(
@@ -58,7 +68,7 @@ class ContentMediaCard extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(right: 5),
                   child: Text(
-                    title,
+                    widget.title,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: AppTexteTheme.titleCard,
@@ -68,70 +78,138 @@ class ContentMediaCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      genre,
+                      widget.genre,
                       style: AppTexteTheme.subTitleCard,
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(0),
-                      child: PopupMenuButton(
-                        padding: const EdgeInsets.all(0),
-                        itemBuilder: (BuildContext context) => [
-                          const PopupMenuItem(
-                            value: ContentOptions.addToWatchList,
-                            child: Text('ajouter à la watchlist'),
-                          ),
-                          const PopupMenuItem(
-                            value: ContentOptions.share,
-                            child: Text('partager'),
-                          ),
-                          const PopupMenuItem(
-                            value: ContentOptions.report,
-                            child: Text('signaler'),
-                          ),
-                        ],
-                        onSelected: ((value) async {
-                          if (value == ContentOptions.addToWatchList) {
-                            if (await ListService.addMovieToWatchlist(id)) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  backgroundColor: Colors.green,
-                                  content: Text(
-                                    'Ajouté à la watchlist',
-                                    style: AppTexteTheme.snackbar,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              );
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  backgroundColor: Colors.red,
-                                  content: Text(
-                                    'Déjà dans la watchlist',
-                                    style: AppTexteTheme.snackbar,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              );
-                            }
-                          } else if (value == ContentOptions.share) {
-                          } else if (value == ContentOptions.report) {}
-                        }),
-                        child: Container(
-                          padding: const EdgeInsets.all(0),
-                          child: const Icon(
-                            Icons.more_vert,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    if (widget.idList == 0) _buildPopupMenuButton(),
+                    if (widget.idList != 0) _buildPopupMenuButtonOnList(),
                   ],
                 ),
               ],
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget _buildPopupMenuButton() {
+    return Container(
+      padding: const EdgeInsets.all(0),
+      child: PopupMenuButton(
+        padding: const EdgeInsets.all(0),
+        itemBuilder: (BuildContext context) => [
+          const PopupMenuItem(
+            value: ContentOptions.addToWatchList,
+            child: Text('ajouter à la watchlist'),
+          ),
+          const PopupMenuItem(
+            value: ContentOptions.share,
+            child: Text('partager'),
+          ),
+          const PopupMenuItem(
+            value: ContentOptions.report,
+            child: Text('signaler'),
+          ),
+        ],
+        onSelected: ((value) async {
+          if (value == ContentOptions.addToWatchList) {
+            if (await ListService.addMovieToWatchlist(widget.id)) {
+              widget.reloadList();
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Colors.green,
+                  content: Text(
+                    'Ajouté à la watchlist',
+                    style: AppTexteTheme.snackbar,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(
+                    'Déjà dans la watchlist',
+                    style: AppTexteTheme.snackbar,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              );
+            }
+          } else if (value == ContentOptions.share) {
+          } else if (value == ContentOptions.report) {}
+        }),
+        child: Container(
+          padding: const EdgeInsets.all(0),
+          child: const Icon(
+            Icons.more_vert,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPopupMenuButtonOnList() {
+    return Container(
+      padding: const EdgeInsets.all(0),
+      child: PopupMenuButton(
+        padding: const EdgeInsets.all(0),
+        itemBuilder: (BuildContext context) => [
+          const PopupMenuItem(
+            value: ContentOptions.addToWatchList,
+            child: Text('Supprimer de la liste'),
+          ),
+          const PopupMenuItem(
+            value: ContentOptions.share,
+            child: Text('partager'),
+          ),
+          const PopupMenuItem(
+            value: ContentOptions.report,
+            child: Text('signaler'),
+          ),
+        ],
+        onSelected: ((value) async {
+          if (value == ContentOptions.addToWatchList) {
+            if (await ListTmdbWebService.removeMovieFromList(
+              widget.idList,
+              widget.id,
+            )) {
+              widget.reloadList();
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Colors.green,
+                  content: Text(
+                    'Le film a été supprimé de la liste',
+                    style: AppTexteTheme.snackbar,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(
+                    'Erreur lors de la suppression du film de la liste',
+                    style: AppTexteTheme.snackbar,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              );
+            }
+          } else if (value == ContentOptions.share) {
+          } else if (value == ContentOptions.report) {}
+        }),
+        child: Container(
+          padding: const EdgeInsets.all(0),
+          child: const Icon(
+            Icons.more_vert,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }

@@ -4,7 +4,7 @@ class MovieList {
   final int id;
   final String name;
   final String description;
-  final List<Movie>? movies;
+  final List<Movie> movies;
 
   MovieList({
     required this.id,
@@ -18,6 +18,9 @@ class MovieList {
       id: json['id'] as int,
       name: json['name'] as String,
       description: json['description'] as String,
+      movies: (json['items'] as List<dynamic>)
+          .map((e) => Movie.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 }
