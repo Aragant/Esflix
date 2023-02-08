@@ -42,9 +42,9 @@ class _HomeViewState extends State<HomeView> {
         _moviesPopular = moviesPopular;
         _moviesWatchlist = moviesWatchlist;
         _idWatchlist = idWatchlist;
-        _isLoading = false;
         _moviesTopRated = moviesTopRated;
         _moviesUpComing = moviesUpComing;
+        _isLoading = false;
       });
     } catch (error) {
       setState(() {
@@ -95,7 +95,10 @@ class _HomeViewState extends State<HomeView> {
         titleSpacing: 8.0,
         backgroundColor: Theme.of(context).colorScheme.surface,
         foregroundColor: Theme.of(context).colorScheme.onSurface,
-        title: const Text('ESFLIX', style: AppTexteTheme.logoText),
+        title: const Text(
+          'ESFLIX',
+          style: AppTexteTheme.logoText,
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
@@ -144,8 +147,7 @@ class _HomeViewState extends State<HomeView> {
             SizedBox(
               height: 284,
               child: MovieListView(
-                  movies: _moviesTopRated,
-                  watchlistCallback: _reloadWatchList),
+                  movies: _moviesTopRated, watchlistCallback: _reloadWatchList),
             ),
             const Padding(
               padding: EdgeInsets.all(8.0),
@@ -157,8 +159,7 @@ class _HomeViewState extends State<HomeView> {
             SizedBox(
               height: 284,
               child: MovieListView(
-                  movies: _moviesUpComing,
-                  watchlistCallback: _reloadWatchList),
+                  movies: _moviesUpComing, watchlistCallback: _reloadWatchList),
             ),
           ],
         ),
