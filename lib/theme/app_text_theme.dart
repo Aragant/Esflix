@@ -26,4 +26,10 @@ static const TextStyle logoText = TextStyle(
   fontWeight: FontWeight.bold,
   color: Colors.orange,
 );
+
+static const TextStyle snackbar = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
 }

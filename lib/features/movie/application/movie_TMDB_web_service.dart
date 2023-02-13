@@ -42,4 +42,40 @@ class MovieTmdbWebService {
 
     return movie;
   }
+
+  static Future<List<Movie>> getUpComing() async {
+    final response = await http.get(Uri.parse(
+        '$_baseUrl/upcoming?api_key=$_apiKey&language=$_language&page=1'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load upcoming movies');
+    }
+
+    final jsonBody = jsonDecode(response.body);
+
+    final moviesId =
+        (jsonBody['results'] as List<dynamic>).map((e) => e['id']).toList();
+
+    final movies = Future.wait(moviesId.map((e) => getDetails(e)));
+
+    return movies;
+  }
+
+  static Future<List<Movie>> getTopRated() async {
+    final response = await http.get(Uri.parse(
+        '$_baseUrl/top_rated?api_key=$_apiKey&language=$_language&page=1'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load top rated movies');
+    }
+
+    final jsonBody = jsonDecode(response.body);
+
+    final moviesId =
+        (jsonBody['results'] as List<dynamic>).map((e) => e['id']).toList();
+
+    final movies = Future.wait(moviesId.map((e) => getDetails(e)));
+
+    return movies;
+  }
 }

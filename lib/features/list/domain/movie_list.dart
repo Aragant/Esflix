@@ -10,7 +10,7 @@ class MovieList {
     required this.id,
     required this.name,
     required this.description,
-    required this.movies,
+    this.movies = const [],
   });
 
   factory MovieList.fromJson(Map<String, dynamic> json) {
@@ -18,8 +18,8 @@ class MovieList {
       id: json['id'] as int,
       name: json['name'] as String,
       description: json['description'] as String,
-      movies: (json['movies'] as List)
-          .map((movie) => Movie.fromJson(movie))
+      movies: (json['items'] as List<dynamic>)
+          .map((e) => Movie.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
   }

@@ -10,6 +10,8 @@ final darkTheme = ThemeData(
     inversePrimary: Colors.white,
     surface: Colors.black,
     onSurface: Colors.white,
+    onPrimaryContainer: Colors.red,
+    error: Colors.red,
   ),
   fontFamily: 'OpenSans',
 );

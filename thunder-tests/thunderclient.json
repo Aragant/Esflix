@@ -239,5 +239,90 @@
       }
     ],
     "tests": []
+  },
+  {
+    "_id": "dfa31af6-aea5-4cdb-97f1-9d081c3d8521",
+    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "containerId": "29d16bdf-495e-4139-99ff-e1c9e1225aa0",
+    "name": "addToList",
+    "url": "https://api.themoviedb.org/3/list/8238953/add_item?api_key=46acccd3d3113568a1606057699b5c46&session_id=427beb4a6ac2fd4140099b4bd439a8e41c876114&media_id=18",
+    "method": "POST",
+    "sortNum": 140000,
+    "created": "2023-02-06T15:07:43.987Z",
+    "modified": "2023-02-06T15:10:03.914Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "api_key",
+        "value": "46acccd3d3113568a1606057699b5c46",
+        "isPath": false
+      },
+      {
+        "name": "session_id",
+        "value": "427beb4a6ac2fd4140099b4bd439a8e41c876114",
+        "isPath": false
+      },
+      {
+        "name": "media_id",
+        "value": "18",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "50082354-7d53-4247-89f0-0792a6293953",
+    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "containerId": "29d16bdf-495e-4139-99ff-e1c9e1225aa0",
+    "name": "getDetail",
+    "url": "{{LIST}}/8238953?{{TOKEN_TMDB}}&{{LANG}}",
+    "method": "GET",
+    "sortNum": 150000,
+    "created": "2023-02-07T13:52:26.121Z",
+    "modified": "2023-02-07T13:54:40.403Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "{{TOKEN_TMDB}}",
+        "value": "",
+        "isPath": false
+      },
+      {
+        "name": "{{LANG}}",
+        "value": "",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "1c03720b-8c6f-4b91-8009-81cc8e30b4d3",
+    "colId": "8ab48e9f-c6c8-41ca-9f12-c7d6964b5468",
+    "containerId": "29d16bdf-495e-4139-99ff-e1c9e1225aa0",
+    "name": "removeList",
+    "url": "{{URL}}/list/8238953/remove_item?{{TOKEN_TMDB}}&session_id=427beb4a6ac2fd4140099b4bd439a8e41c876114",
+    "method": "POST",
+    "sortNum": 160000,
+    "created": "2023-02-07T17:48:56.249Z",
+    "modified": "2023-02-07T17:54:07.983Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "{{TOKEN_TMDB}}",
+        "value": "",
+        "isPath": false
+      },
+      {
+        "name": "session_id",
+        "value": "427beb4a6ac2fd4140099b4bd439a8e41c876114",
+        "isPath": false
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"media_id\": \"505642\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

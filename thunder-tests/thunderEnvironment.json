@@ -30,6 +30,10 @@
       {
         "name": "ACCOUNT",
         "value": "{{URL}}/account"
+      },
+      {
+        "name": "LIST",
+        "value": "{{URL}}/list"
       }
     ]
   }

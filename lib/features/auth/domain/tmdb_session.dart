@@ -1,7 +1,7 @@
-
 class TmdbSession {
   static String? requestToken;
   static String? sessionId;
+  static int? accoutnId;
 
   TmdbSession.fromJson(Map<String, dynamic> json) {
     requestToken = json['request_token'];
@@ -14,5 +14,9 @@ class TmdbSession {
 
   TmdbSession.setSessionIdFromJson(Map<String, dynamic> json) {
     sessionId = json['session_id'];
+  }
+
+  TmdbSession.setAccountIdFromJson(int id) {
+    accoutnId = id;
   }
 }
