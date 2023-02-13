@@ -34,6 +34,8 @@ class _MyListViewState extends State<MyListView> {
     });
     try {
       List<ListDetail> listsDetails = await ListTmdbWebService.getLists();
+      // set watsh list as the first list
+      listsDetails.sort((a, b) => a.name == "Watchlist" ? -1 : 1);
       Map<ListDetail, List<Movie>> listsMovies = {
         for (var list in listsDetails)
           list: await ListTmdbWebService.getListMovies(list.id)
