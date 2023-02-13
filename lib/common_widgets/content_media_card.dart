@@ -32,7 +32,6 @@ class ContentMediaCard extends StatefulWidget {
 }
 
 class _ContentMediaCardState extends State<ContentMediaCard> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -105,7 +104,7 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
           ),
           const PopupMenuItem(
             value: ContentOptions.addToList,
-            child: Text('Add to watchlist'),
+            child: Text('Add to list'),
           ),
           const PopupMenuItem(
             value: ContentOptions.share,
@@ -139,7 +138,7 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
               );
             }
           } else if (value == ContentOptions.addToList) {
-
+            showDialog(context: context, builder: (context) => wichListToAdd());
           } else if (value == ContentOptions.share) {}
         }),
         child: Container(
@@ -208,5 +207,84 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
         ),
       ),
     );
+  }
+
+  Widget wichListToAdd() {
+    return Builder(builder: (context) {
+      return AlertDialog(
+        content: SizedBox(
+          height: 300,
+          width: 200,
+          child: Column(
+            children: [
+              const Text(
+                'ADD TO LIST',
+                style: AppTexteTheme.title,
+              ),
+              FutureBuilder(
+                future: ListTmdbWebService.getLists(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    return Expanded(
+                      child: ListView.separated(
+                        separatorBuilder: (BuildContext context, int index) =>
+                            const Divider(
+                          color: Colors.white,
+                        ),
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                            title: Text(
+                              snapshot.data[index].name,
+                              textAlign: TextAlign.center,
+                            ),
+                            onTap: () async {
+                              if (await ListTmdbWebService.addMovieToList(
+                                snapshot.data[index].id,
+                                widget.id,
+                              )) {
+                                widget.reloadList();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Colors.green,
+                                    content: Text(
+                                      'The movie has been added to the list',
+                                      style: AppTexteTheme.snackbar,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                );
+                                Navigator.pop(context);
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Colors.red,
+                                    content: Text(
+                                      'The movie has already been added to the list',
+                                      style: AppTexteTheme.snackbar,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                );
+                                Navigator.pop(context);
+                              }
+                            },
+                          );
+                        },
+                      ),
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
