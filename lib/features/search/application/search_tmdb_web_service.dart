@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:esflix/features/movie/application/movie_tmdb_web_service.dart';
+import 'package:esflix/features/search/domain/search_data.dart';
 
 import '../../movie/domain/movie.dart';
 import '../../../assets/tmdb_constants.dart' as tmdb;
 import 'package:http/http.dart' as http;
 
 class SearchTmdbWebService {
-  static Future<List<Movie>> searchMovie(String query) async {
+  static Future<List<SearchData>> searchMovie(String query) async {
     final response = await http.get(Uri.parse(
         '${tmdb.BASE_URL}/search/movie?api_key=${tmdb.API_KEY}&query=$query&page=1&include_adult=false&language=${tmdb.LANGUAGE}'));
 
@@ -17,15 +18,10 @@ class SearchTmdbWebService {
 
     final jsonBody = jsonDecode(response.body);
 
-    final moviesId =
-        (jsonBody['results'] as List<dynamic>).map((e) => e['id']).toList();
+    final List<SearchData> searchData = jsonBody['results']
+        .map<SearchData>((e) => SearchData.fromJson(e))
+        .toList();
 
-    moviesId.forEach((element) {
-      print(element);
-    });
-    final movies =
-        Future.wait(moviesId.map((e) => MovieTmdbWebService.getDetails(e)));
-
-    return movies;
+    return searchData;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:esflix/features/search/application/search_tmdb_web_service.dart';
+import 'package:esflix/features/search/domain/search_data.dart';
 import 'package:flutter/material.dart';
 
 import '../../movie/domain/movie.dart';
@@ -15,7 +16,7 @@ class _SearchViewState extends State<SearchView> {
   bool _isSearch = false;
   String? _exception;
   String query = '';
-  List<Movie> _movies = [];
+  List<SearchData> _movies = [];
 
   @override
   void initState() {
@@ -128,7 +129,10 @@ class _SearchViewState extends State<SearchView> {
   }
 
   Widget _buildMovieList() {
-    return ListView.builder(
+    return ListView.separated(
+      separatorBuilder: (context, index) => const Divider(
+        color: Colors.white,
+      ),
       itemCount: _movies.length,
       itemBuilder: (context, index) {
         final movie = _movies[index];
