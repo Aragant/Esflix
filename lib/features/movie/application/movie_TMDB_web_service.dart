@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import '../../../assets/tmdb_constants.dart' as tmdb;
 
 import '../domain/movie.dart';
+import '../domain/review.dart';
 
 class MovieTmdbWebService {
   static final _apiKey = tmdb.API_KEY;
@@ -77,5 +78,24 @@ class MovieTmdbWebService {
     final movies = Future.wait(moviesId.map((e) => getDetails(e)));
 
     return movies;
+  }
+
+  static Future<List<MovieReview>> getReviewsFromMovie(int movieId) async {
+    final response = await http.get(Uri.parse(
+        '$_baseUrl/$movieId/reviews?api_key=$_apiKey&language=$_language&page=1'));
+    print('$_baseUrl/$movieId/reviews?api_key=$_apiKey&language=$_language&page=1');
+    if (response.statusCode != 200) {
+      throw Exception('Failed to get reviews movie');
+    }
+
+    final jsonBody = jsonDecode(response.body);
+
+    //final moviesReviews = jsonBody["results"].map((e) => e.fromJson(jsonBody));
+
+    final moviesReviews = (jsonBody['results'] as List<dynamic>)
+        .map((e) => MovieReview.fromJson(e))
+        .toList();
+
+    return moviesReviews;
   }
 }
