@@ -1,6 +1,7 @@
 import 'package:esflix/features/auth/application/auth_tmdb_service.dart';
 import 'package:esflix/features/auth/presentation/login_view.dart';
 import 'package:esflix/features/list/presentation/my_list_view.dart';
+import 'package:esflix/features/search/presentation/search_view.dart';
 import 'package:esflix/home_view.dart';
 import 'package:esflix/theme/dark_theme.dart';
 import 'package:esflix/theme/light_theme.dart';
@@ -41,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static const List<Widget> _mainViews = <Widget>[
     HomeView(),
     MyListView(),
-    Text('Search'),
+    SearchView(),
     LoginView(),
   ];
 

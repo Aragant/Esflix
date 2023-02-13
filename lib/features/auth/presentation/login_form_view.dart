@@ -36,6 +36,8 @@ class _LoginFormViewState extends State<LoginFormView> {
             ),
             TextFormField(
               controller: _passwordController,
+              obscureText: true,
+              enableSuggestions: false,
               decoration: const InputDecoration(
                 labelText: 'Password',
               ),
