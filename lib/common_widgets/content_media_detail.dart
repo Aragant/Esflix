@@ -104,6 +104,14 @@ class _ContentMediaDetailState extends State<ContentMediaDetail> {
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ),
+                  Positioned(
+                    top: 10,
+                    right: 10,
+                    child: IconButton(
+                      icon: const Icon(Icons.more_vert),
+                      onPressed: () {},
+                    ),
+                  ),
                 ],
               ),
               Padding(
