@@ -1,11 +1,11 @@
 import 'package:esflix/features/movie/application/movie_TMDB_web_service.dart';
+import 'package:esflix/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 
 import '../features/movie/domain/movie.dart';
 import '../features/movie/presentation/movie_review.dart';
 
-
-class ContentMediaDetail extends StatefulWidget{
+class ContentMediaDetail extends StatefulWidget {
   final int id;
 
   const ContentMediaDetail({super.key, required this.id});
@@ -30,16 +30,15 @@ class _ContentMediaDetailState extends State<ContentMediaDetail> {
       _isLoading = true;
     });
 
-    try{
+    try {
       final movie = await MovieTmdbWebService.getDetails(widget.id);
 
       setState(() {
         _movie = movie;
         _isLoading = false;
       });
-    }
-    catch(error){
-      if(mounted){
+    } catch (error) {
+      if (mounted) {
         setState(() {
           _exception = error.toString();
           _isLoading = false;
@@ -83,7 +82,7 @@ class _ContentMediaDetailState extends State<ContentMediaDetail> {
     }
   }
 
-  Widget _buildDetail(){
+  Widget _buildDetail() {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -107,62 +106,59 @@ class _ContentMediaDetailState extends State<ContentMediaDetail> {
                   ),
                 ],
               ),
-              const SizedBox(height: 15),
-              Text(
-                _movie!.title,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 15),
+                    Text(
+                      _movie!.title,
+                      style: AppTexteTheme.title,
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              '${_movie!.rating.toString()}/10',
+                              style: AppTexteTheme.content,
+                            ),
+                            const Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Icon(
+                              Icons.calendar_today,
+                              color: Colors.red,
+                            ),
+                            Text(
+                              _movie!.releaseDate,
+                              style: AppTexteTheme.content,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30),
+                    Text(
+                      _movie!.description,
+                      style: AppTexteTheme.content,
+                    ),
+                    const SizedBox(height: 30),
+                    const Text("Commentaires", style: AppTexteTheme.title),
+                    const SizedBox(height: 30),
+                    MovieCommentary(id: widget.id),
+                  ],
                 ),
               ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        '${_movie!.rating.toString()}/10',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Icon(
-                        Icons.calendar_today,
-                        color: Colors.red,
-                      ),
-                      Text(
-                        _movie!.releaseDate,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 30),
-              Text(
-                _movie!.description,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 30),
-              MovieCommentary(id: widget.id),
             ],
           ),
         ),
