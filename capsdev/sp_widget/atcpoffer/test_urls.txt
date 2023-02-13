@@ -1,0 +1,3 @@
+https://capsdev.service-now.com/$sp.do?id=sp-preview&sys_id=926b99011b71b8d094b0cbb5464bcb2e
+https://capsdev.service-now.com/sp_config?id=atcp_offer
+https://capsdev.service-now.com/sp?id=atcp_offer

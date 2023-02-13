@@ -1,0 +1,47 @@
+.form_link a {
+  text-decoration: underline;
+}
+
+input[type="checkbox"]:focus{
+  outline-width:3px;
+  outline-color:$input-border-focus;
+  outline-style:solid;
+}
+
+.form_link a:focus {
+  outline-width:3px;
+  outline-color:$input-border-focus;
+  outline-style:solid;
+  outline-offset:2px;
+}
+
+.adjust-label{
+  padding-top: 0px;
+  margin-bottom: 7px;
+}
+  input:focus{
+    outline-style:solid;
+    outline-width:1px;
+  }
+
+.myselect {
+    display: block;
+    padding: 0 0 0 8px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #bdc0c4;
+    white-space: nowrap;
+    font-size: .9em;
+    line-height: 32px;
+    height: 100%;
+    color: #444;
+    text-decoration: none;
+    border-radius: 4px;
+    background-clip: padding-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: #fff;
+    min-height: 32px;
+   
+}
