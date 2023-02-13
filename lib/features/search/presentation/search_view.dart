@@ -2,6 +2,7 @@ import 'package:esflix/features/search/application/search_tmdb_web_service.dart'
 import 'package:esflix/features/search/domain/search_data.dart';
 import 'package:flutter/material.dart';
 
+import '../../../common_widgets/content_media_detail.dart';
 import '../../movie/domain/movie.dart';
 
 class SearchView extends StatefulWidget {
@@ -136,10 +137,21 @@ class _SearchViewState extends State<SearchView> {
       itemCount: _movies.length,
       itemBuilder: (context, index) {
         final movie = _movies[index];
-        return ListTile(
-          title: Text(movie.title),
+        return GestureDetector(
+          onTap: () {
+            getDetail(movie.id);
+          },
+          child: ListTile(
+            title: Text(movie.title),
+          ),
         );
       },
     );
+  }
+
+  getDetail(int id) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => ContentMediaDetail(id: id),
+    ));
   }
 }

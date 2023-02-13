@@ -31,7 +31,6 @@ class _MovieReview extends State<MovieCommentary> {
 
     try{
       final movieReview = await MovieTmdbWebService.getReviewsFromMovie(widget.id);
-      _movieReview.forEach((element) {print(element.author);});
       setState(() {
         _movieReview = movieReview;
         _isLoading = false;

@@ -34,6 +34,8 @@ class _MyListViewState extends State<MyListView> {
     });
     try {
       List<ListDetail> listsDetails = await ListTmdbWebService.getLists();
+      // set watsh list as the first list
+      listsDetails.sort((a, b) => a.name == "Watchlist" ? -1 : 1);
       Map<ListDetail, List<Movie>> listsMovies = {
         for (var list in listsDetails)
           list: await ListTmdbWebService.getListMovies(list.id)
@@ -108,37 +110,46 @@ class _MyListViewState extends State<MyListView> {
         ),
         body: TabBarView(
           children: _listsMovies.entries
-              .map((e) => Column(
-                    children: [
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: e.value.length,
-                          itemBuilder: (context, index) {
-                            return ContentMediaCard(
-                              id: e.value[index].id,
-                              title: e.value[index].title,
-                              urlImg: e.value[index].posterPath,
-                              genre: e.value[index].genres[0].name,
-                              reloadList: reload,
-                              idList: e.key.id,
-                            );
-                          },
-                        ),
-                      ),
-                      if (e.key.name != "Watchlist")
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Theme.of(context).colorScheme.error,
+              .map((e) => Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Column(
+                      children: [
+                        Expanded(
+                          child: GridView.builder(
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.585,
+                              crossAxisSpacing: 38,
+                              mainAxisSpacing: 0,
+                            ),
+                            itemCount: e.value.length,
+                            itemBuilder: (context, index) {
+                              return ContentMediaCard(
+                                id: e.value[index].id,
+                                title: e.value[index].title,
+                                urlImg: e.value[index].posterPath,
+                                genre: e.value[index].genres[0].name,
+                                reloadList: reload,
+                                idList: e.key.id,
+                              );
+                            },
                           ),
-                          onPressed: () async {
-                            await ListTmdbWebService.deleteList(e.key.id);
-                            reload();
-                          },
-                          child: const Text("DELETE LIST"),
                         ),
-                    ],
-                  ))
+                        if (e.key.name != "Watchlist")
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.error,
+                            ),
+                            onPressed: () async {
+                              await ListTmdbWebService.deleteList(e.key.id);
+                              reload();
+                            },
+                            child: const Text("DELETE LIST"),
+                          ),
+                      ],
+                    ),
+              ))
               .toList(),
         ),
       ),
