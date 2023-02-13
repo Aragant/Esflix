@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "_id": "e8201ad9-51be-4c3e-bf54-8f7fce515be2",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://api.themoviedb.org/3/search/movie?api_key=46acccd3d3113568a1606057699b5c46&language=en-US&query=az&page=1&include_adult=false",
+    "url": "https://api.themoviedb.org/3/search/movie?api_key=46acccd3d3113568a1606057699b5c46&language=en-US&query=az&page=1&include_adult=false",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-02-13T17:34:35.128Z",
+    "modified": "2023-02-13T17:34:35.128Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "api_key",
+        "value": "46acccd3d3113568a1606057699b5c46",
+        "isPath": false
+      },
+      {
+        "name": "language",
+        "value": "en-US",
+        "isPath": false
+      },
+      {
+        "name": "query",
+        "value": "az",
+        "isPath": false
+      },
+      {
+        "name": "page",
+        "value": "1",
+        "isPath": false
+      },
+      {
+        "name": "include_adult",
+        "value": "false",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  }
+]
