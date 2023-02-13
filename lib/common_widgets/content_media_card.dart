@@ -1,6 +1,7 @@
 import 'package:esflix/features/list/application/list_service.dart';
 import 'package:esflix/features/list/application/list_tmdb_web_service.dart';
 import 'package:esflix/theme/app_text_theme.dart';
+import 'package:esflix/common_widgets/content_media_detail.dart';
 import 'package:flutter/material.dart';
 
 enum ContentOptions {
@@ -35,60 +36,63 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8),
-      width: 150,
-      height: 268,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            children: [
-              Container(
-                width: 150,
-                height: 200,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                        "https://image.tmdb.org/t/p/w500/${widget.urlImg}"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Container(
-            height: 68,
-            padding: const EdgeInsets.only(left: 5, top: 5, bottom: 5),
-            color: Colors.grey[900],
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () => getDetail(),
+      child: Container(
+        margin: const EdgeInsets.all(8),
+        width: 150,
+        height: 268,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
               children: [
                 Container(
-                  margin: const EdgeInsets.only(right: 5),
-                  child: Text(
-                    widget.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTexteTheme.titleCard,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      widget.genre,
-                      style: AppTexteTheme.subTitleCard,
+                  width: 150,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          "https://image.tmdb.org/t/p/w500/${widget.urlImg}"),
+                      fit: BoxFit.cover,
                     ),
-                    if (widget.idList == 0) _buildPopupMenuButton(),
-                    if (widget.idList != 0) _buildPopupMenuButtonOnList(),
-                  ],
+                  ),
                 ),
               ],
             ),
-          )
-        ],
+            Container(
+              height: 68,
+              padding: const EdgeInsets.only(left: 5, top: 5, bottom: 5),
+              color: Colors.grey[900],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(right: 5),
+                    child: Text(
+                      widget.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTexteTheme.titleCard,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        widget.genre,
+                        style: AppTexteTheme.subTitleCard,
+                      ),
+                      if (widget.idList == 0) _buildPopupMenuButton(),
+                      if (widget.idList != 0) _buildPopupMenuButtonOnList(),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -207,6 +211,12 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
           ),
         ),
       ),
+    );
+  }
+
+  getDetail() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => ContentMediaDetail(id: widget.id),)
     );
   }
 }
