@@ -1,3 +1,0 @@
-https://capsdev.service-now.com/$sp.do?id=sp-preview&sys_id=bd73698bdb134850afa29532ca96193e
-https://capsdev.service-now.com/sp_config?id=customer-registration2
-https://capsdev.service-now.com/sp?id=customer-registration2
