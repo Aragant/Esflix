@@ -1,3 +1,4 @@
+import 'package:esflix/features/auth/application/auth_tmdb_service.dart';
 import 'package:esflix/features/list/application/list_service.dart';
 import 'package:esflix/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   bool _isLoading = true;
   String? _exception;
+  bool _isLogged = false;
   List<Movie> _moviesPopular = [];
   List<Movie> _moviesWatchlist = [];
   List<Movie> _moviesTopRated = [];
@@ -33,15 +35,12 @@ class _HomeViewState extends State<HomeView> {
     });
     try {
       final moviesPopular = await MovieTmdbWebService.getPopular();
-      final moviesWatchlist = await ListService.getWatchListMovies();
-      final idWatchlist = await ListService.getWatchListId();
       final moviesTopRated = await MovieTmdbWebService.getTopRated();
       final moviesUpComing = await MovieTmdbWebService.getUpComing();
 
       setState(() {
         _moviesPopular = moviesPopular;
-        _moviesWatchlist = moviesWatchlist;
-        _idWatchlist = idWatchlist;
+
         _moviesTopRated = moviesTopRated;
         _moviesUpComing = moviesUpComing;
         _isLoading = false;
@@ -52,6 +51,25 @@ class _HomeViewState extends State<HomeView> {
           _exception = error.toString();
           _isLoading = false;
         });
+      }
+    }
+
+    if (AuthTmdbService.isLogged()) {
+      try {
+        final moviesWatchlist = await ListService.getWatchListMovies();
+        final idWatchlist = await ListService.getWatchListId();
+        setState(() {
+          _moviesWatchlist = moviesWatchlist;
+          _idWatchlist = idWatchlist;
+          _isLogged = true;
+        });
+      } catch (error) {
+        if (mounted) {
+          setState(() {
+            _exception = error.toString();
+            _isLoading = false;
+          });
+        }
       }
     }
   }
@@ -124,6 +142,7 @@ class _HomeViewState extends State<HomeView> {
               child: MovieListView(
                   movies: _moviesPopular, watchlistCallback: _reloadWatchList),
             ),
+            if (_isLogged)
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(

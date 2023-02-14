@@ -1,9 +1,11 @@
 import 'package:esflix/common_widgets/content_media_card.dart';
+import 'package:esflix/features/auth/application/auth_tmdb_web_service.dart';
 import 'package:esflix/features/list/application/list_tmdb_web_service.dart';
 import 'package:esflix/features/list/domain/list_detail.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/app_text_theme.dart';
+import '../../auth/application/auth_tmdb_service.dart';
 import '../../movie/domain/movie.dart';
 
 class MyListView extends StatefulWidget {
@@ -17,6 +19,7 @@ class _MyListViewState extends State<MyListView> {
   final _formKey = GlobalKey<FormState>();
   final _listNameController = TextEditingController();
   final _listDescController = TextEditingController();
+  bool _isLogged = false;
 
   bool _isLoading = true;
   String? _exception;
@@ -34,6 +37,7 @@ class _MyListViewState extends State<MyListView> {
     });
     try {
       List<ListDetail> listsDetails = await ListTmdbWebService.getLists();
+      bool logged = await AuthTmdbService.isLogged();
       // set watsh list as the first list
       listsDetails.sort((a, b) => a.name == "Watchlist" ? -1 : 1);
       Map<ListDetail, List<Movie>> listsMovies = {
@@ -43,6 +47,7 @@ class _MyListViewState extends State<MyListView> {
       setState(() {
         _listsMovies = listsMovies;
         _isLoading = false;
+        _isLogged = logged;
       });
     } catch (error) {
       if (mounted) {
@@ -74,11 +79,22 @@ class _MyListViewState extends State<MyListView> {
   Widget _buildBody() {
     if (_isLoading) {
       return _buildLoading();
+    }
+    else if (_isLogged == false){
+      return _notLogged();
     } else if (_exception != null) {
       return _buildError();
     } else {
       return _buildListView();
     }
+  }
+
+  Widget _notLogged(){
+    return const Scaffold(
+      body: Center(
+        child: Text("You are not logged in"),
+      ),
+    );
   }
 
   Widget _buildListView() {
