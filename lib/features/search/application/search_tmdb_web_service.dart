@@ -1,9 +1,7 @@
 import 'dart:convert';
 
-import 'package:esflix/features/movie/application/movie_tmdb_web_service.dart';
 import 'package:esflix/features/search/domain/search_data.dart';
 
-import '../../movie/domain/movie.dart';
 import '../../../assets/tmdb_constants.dart' as tmdb;
 import 'package:http/http.dart' as http;
 

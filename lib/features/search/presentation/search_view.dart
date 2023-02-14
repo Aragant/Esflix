@@ -3,8 +3,6 @@ import 'package:esflix/features/search/domain/search_data.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common_widgets/content_media_detail.dart';
-import '../../movie/domain/movie.dart';
-
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
 
@@ -33,7 +31,6 @@ class _SearchViewState extends State<SearchView> {
     if (query.isNotEmpty) {
       try {
         final movies = await SearchTmdbWebService.searchMovie(query);
-        print(movies.toString());
         setState(() {
           _movies = movies;
           _isLoading = false;
