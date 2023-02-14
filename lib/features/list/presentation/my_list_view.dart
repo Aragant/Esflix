@@ -118,7 +118,7 @@ class _MyListViewState extends State<MyListView> {
                           child: GridView.builder(
                             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              childAspectRatio: 0.549,
+                              childAspectRatio: 0.585,
                               crossAxisSpacing: 38,
                               mainAxisSpacing: 0,
                             ),
