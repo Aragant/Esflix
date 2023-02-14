@@ -17,7 +17,7 @@ class ContentMediaDetail extends StatefulWidget {
   final int id;
 
   final VoidCallback reloadList = () => {};
-  
+
   ContentMediaDetail({super.key, required this.id});
 
   @override
@@ -76,7 +76,7 @@ class _ContentMediaDetailState extends State<ContentMediaDetail> {
 
   Widget _buildMoviesIsEmpty() {
     return const Center(
-      child: Text('No movies'),
+      child: Text('Pas de films'),
     );
   }
 
@@ -189,11 +189,11 @@ class _ContentMediaDetailState extends State<ContentMediaDetail> {
         itemBuilder: (BuildContext context) => [
           const PopupMenuItem(
             value: ContentOptions.addToWatchList,
-            child: Text('Add to watchlist'),
+            child: Text('Ajouter à la watchlist'),
           ),
           const PopupMenuItem(
             value: ContentOptions.addToList,
-            child: Text('Add to list'),
+            child: Text('Ajouter à la liste'),
           ),
           const PopupMenuItem(
             value: ContentOptions.share,
@@ -208,7 +208,7 @@ class _ContentMediaDetailState extends State<ContentMediaDetail> {
                 const SnackBar(
                   backgroundColor: Colors.green,
                   content: Text(
-                    'The movie has been added to the watchlist',
+                    'Le film a été ajouté à la watchlist',
                     style: AppTexteTheme.snackbar,
                     textAlign: TextAlign.center,
                   ),
@@ -219,7 +219,7 @@ class _ContentMediaDetailState extends State<ContentMediaDetail> {
                 const SnackBar(
                   backgroundColor: Colors.red,
                   content: Text(
-                    'The movie has not been added to the watchlist',
+                    'Le film n\'a pas pu etre ajouté à la watchlist',
                     style: AppTexteTheme.snackbar,
                     textAlign: TextAlign.center,
                   ),
@@ -250,7 +250,7 @@ class _ContentMediaDetailState extends State<ContentMediaDetail> {
           child: Column(
             children: [
               const Text(
-                'ADD TO LIST',
+                'AJOUTER À LA LISTE',
                 style: AppTexteTheme.title,
               ),
               FutureBuilder(
@@ -281,7 +281,7 @@ class _ContentMediaDetailState extends State<ContentMediaDetail> {
                                   const SnackBar(
                                     backgroundColor: Colors.green,
                                     content: Text(
-                                      'The movie has been added to the list',
+                                      'Le film a été ajouté à la liste',
                                       style: AppTexteTheme.snackbar,
                                       textAlign: TextAlign.center,
                                     ),
@@ -293,7 +293,7 @@ class _ContentMediaDetailState extends State<ContentMediaDetail> {
                                   const SnackBar(
                                     backgroundColor: Colors.red,
                                     content: Text(
-                                      'The movie has already been added to the list',
+                                      'Le film a déjà été ajouté à la liste',
                                       style: AppTexteTheme.snackbar,
                                       textAlign: TextAlign.center,
                                     ),

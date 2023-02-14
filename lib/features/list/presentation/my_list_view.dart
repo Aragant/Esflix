@@ -38,7 +38,6 @@ class _MyListViewState extends State<MyListView> {
     try {
       List<ListDetail> listsDetails = await ListTmdbWebService.getLists();
       bool logged = await AuthTmdbService.isLogged();
-      // set watsh list as the first list
       listsDetails.sort((a, b) => a.name == "Watchlist" ? -1 : 1);
       Map<ListDetail, List<Movie>> listsMovies = {
         for (var list in listsDetails)
@@ -92,7 +91,7 @@ class _MyListViewState extends State<MyListView> {
   Widget _notLogged(){
     return const Scaffold(
       body: Center(
-        child: Text("You are not logged in"),
+        child: Text("Vous n'êtes pas connecté")
       ),
     );
   }
@@ -102,7 +101,7 @@ class _MyListViewState extends State<MyListView> {
       length: _listsMovies.length,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("My Lists"),
+          title: const Text("Mes Listes"),
           actions: [
             IconButton(
               icon: const Icon(Icons.add),
@@ -161,7 +160,7 @@ class _MyListViewState extends State<MyListView> {
                               await ListTmdbWebService.deleteList(e.key.id);
                               reload();
                             },
-                            child: const Text("DELETE LIST"),
+                            child: const Text("SUPPRIMER LA LISTE"),
                           ),
                       ],
                     ),
@@ -184,17 +183,17 @@ class _MyListViewState extends State<MyListView> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const Text(
-              "NEW LIST",
+              "NOUVELLE LISTE",
               style: AppTexteTheme.title,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 controller: _listNameController,
-                decoration: const InputDecoration(labelText: "Name"),
+                decoration: const InputDecoration(labelText: "Nom"),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a list name';
+                    return 'Donnez un nom à votre liste';
                   }
                   return null;
                 },
@@ -207,7 +206,7 @@ class _MyListViewState extends State<MyListView> {
                 decoration: const InputDecoration(labelText: "Description"),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a description';
+                    return 'Donnez une description';
                   }
                   return null;
                 },
@@ -216,7 +215,7 @@ class _MyListViewState extends State<MyListView> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                child: const Text("CREATE"),
+                child: const Text("CRÉER"),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     try {

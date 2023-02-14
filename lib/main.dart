@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Esflix',
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
@@ -66,15 +66,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bookmark),
-            label: 'My list',
+            label: 'listes',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search',
+            label: 'Rechercher',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
-            label: 'Account',
+            label: 'Compte',
           ),
         ],
         currentIndex: _selectedIndex,

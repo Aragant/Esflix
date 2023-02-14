@@ -65,7 +65,7 @@ class _MovieReview extends State<MovieCommentary> {
 
   Widget _buildMoviesIsEmpty() {
     return const Center(
-      child: Text('No movies'),
+      child: Text('Pas de films'),
     );
   }
 

@@ -93,7 +93,7 @@ class _HomeViewState extends State<HomeView> {
 
   Widget _buildMoviesIsEmpty() {
     return const Center(
-      child: Text('No movies'),
+      child: Text('Pas de films'),
     );
   }
 
@@ -119,12 +119,6 @@ class _HomeViewState extends State<HomeView> {
           'ESFLIX',
           style: AppTexteTheme.logoText,
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -133,7 +127,7 @@ class _HomeViewState extends State<HomeView> {
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                'POPULAR MOVIES',
+                'FILMS POPULAIRES',
                 style: AppTexteTheme.title,
               ),
             ),
@@ -143,13 +137,13 @@ class _HomeViewState extends State<HomeView> {
                   movies: _moviesPopular, watchlistCallback: _reloadWatchList),
             ),
             if (_isLogged)
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'WATCHLIST',
-                style: AppTexteTheme.title,
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'WATCHLIST',
+                  style: AppTexteTheme.title,
+                ),
               ),
-            ),
             SizedBox(
               height: 284,
               child: MovieListView(
@@ -161,7 +155,7 @@ class _HomeViewState extends State<HomeView> {
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                'TOP RATED',
+                'MIEUX NOTÉ',
                 style: AppTexteTheme.title,
               ),
             ),
@@ -173,7 +167,7 @@ class _HomeViewState extends State<HomeView> {
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                'UPCOMING',
+                'PROCHAINEMENT',
                 style: AppTexteTheme.title,
               ),
             ),

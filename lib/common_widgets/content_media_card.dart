@@ -104,11 +104,11 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
         itemBuilder: (BuildContext context) => [
           const PopupMenuItem(
             value: ContentOptions.addToWatchList,
-            child: Text('Add to watchlist'),
+            child: Text('Ajouter à la watchlist'),
           ),
           const PopupMenuItem(
             value: ContentOptions.addToList,
-            child: Text('Add to list'),
+            child: Text('Ajouter à la liste'),
           ),
           const PopupMenuItem(
             value: ContentOptions.share,
@@ -123,7 +123,7 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
                 const SnackBar(
                   backgroundColor: Colors.green,
                   content: Text(
-                    'The movie has been added to the watchlist',
+                    'Le film a été ajouter à la liste',
                     style: AppTexteTheme.snackbar,
                     textAlign: TextAlign.center,
                   ),
@@ -134,7 +134,7 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
                 const SnackBar(
                   backgroundColor: Colors.red,
                   content: Text(
-                    'The movie has not been added to the watchlist',
+                    'Le film est déjà dans la liste',
                     style: AppTexteTheme.snackbar,
                     textAlign: TextAlign.center,
                   ),
@@ -228,7 +228,7 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
           child: Column(
             children: [
               const Text(
-                'ADD TO LIST',
+                'AJOUTER À UNE LISTE',
                 style: AppTexteTheme.title,
               ),
               FutureBuilder(
@@ -259,7 +259,7 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
                                   const SnackBar(
                                     backgroundColor: Colors.green,
                                     content: Text(
-                                      'The movie has been added to the list',
+                                      'Le film a été ajouté à la liste',
                                       style: AppTexteTheme.snackbar,
                                       textAlign: TextAlign.center,
                                     ),
@@ -271,7 +271,7 @@ class _ContentMediaCardState extends State<ContentMediaCard> {
                                   const SnackBar(
                                     backgroundColor: Colors.red,
                                     content: Text(
-                                      'The movie has already been added to the list',
+                                      'Le film est déjà présent dans la liste',
                                       style: AppTexteTheme.snackbar,
                                       textAlign: TextAlign.center,
                                     ),
